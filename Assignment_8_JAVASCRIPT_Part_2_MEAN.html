@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>DateTime</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+    <h1 id="datetime_heading">Welcome to Date-Time world</h1>
+    <div id="today_date"></div>
+    <div id="current_time"></div>
+    <script>
+        var keep_looping = setInterval(function () {
+            var whatisnow = new Date();
+            var get_hour = whatisnow.getHours();
+            var ampm = get_hour < 12 ?  'AM' : 'PM';
+            var hour_12hrformat = get_hour <= 12 ? get_hour : get_hour-12;
+            var day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            var date = `Today is: ${day_of_week[whatisnow.getDay()]} ${whatisnow.getDate()}/${whatisnow.getMonth()}/${whatisnow.getFullYear()}`;
+            var time = `${get_hour} ${ampm}:${whatisnow.getMinutes()}:${whatisnow.getSeconds()}`;
+            $('#today_date').text(date);
+            $('#current_time').text(time);
+        }, 1000);
+    </script>
+</body>
+
+</html>
