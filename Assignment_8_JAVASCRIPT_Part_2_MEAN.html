@@ -4,15 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
-    <title>DateTime</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Solutions to Assignment 8-JAVASCRIPT Part 2 MEAN</title>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
 <body>
-    <h1 id="datetime_heading">Welcome to Date-Time world</h1>
-    <div id="today_date"></div>
-    <div id="current_time"></div>
+    <h1>Solutions to Assignment 8-JAVASCRIPT Part 2 MEAN</h1>
+    <ol>
+        <li>
+            <h4>Write a JavaScript program to display the current day and time in the following format. Sample Output :Today is : Friday.Current time is : 4 PM : 50 : 22</h4>
+            <div id="today_date"></div>
+            <div id="current_time"></div>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript program to print the contents of the current window</h4>
+            <button id="contents_of_page" onclick="printTheWindow()">Print the window!</button>
+            <hr>
+        </li>
+        <li>
+            <b>TODO</b>
+            <h4>Write a JavaScript program to get the current date. Expected Output:mm-dd-yyyy, mm/dd/yyyy or dd-mm-yyyy, dd/mm/yyyy</h4>
+            <div>Current Date</div>
+            <ul>
+                <li id="date1"></li>
+                <li id="date2"></li>
+            </ul>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript program where the program takes a random integer between 1 to 10, the user is then prompted to input a guess number. If the user input matches with guess number, the program will display a message "Good Work" otherwise display a message "Not matched".</h4>
+            <button onclick="guessNow()">Guess Me</button>
+            <div id="guess_result"></div>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript program to calculate multiplication and division of two numbers (input from user)</h4>
+            <table>
+                <tr>
+                    <td>1st Number:</td>  <td><input id="firstno" type="text"></td>
+                </tr>
+                <tr>
+                    <td>2nd Number:</td>  <td><input id="secondno" type="text"></td>
+                </tr>
+                <tr>
+                    <td><button onclick="multiply()">Multiply</button></td> <td><button onclick="divide()">Divide</button></td>
+                </tr>
+            </table>
+            The Result is: <br>
+            <div id="mul_div_result"></div>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript program to get the website URL (loading page) & print on console.</h4>
+            <i>Please look for the website's URL in thew console</i>
+        </li>
+    </ol>
+
+
     <script>
         var keep_looping = setInterval(function () {
             var whatisnow = new Date();
@@ -20,11 +70,40 @@
             var ampm = get_hour < 12 ?  'AM' : 'PM';
             var hour_12hrformat = get_hour <= 12 ? get_hour : get_hour-12;
             var day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-            var date = `Today is: ${day_of_week[whatisnow.getDay()]} ${whatisnow.getDate()}/${whatisnow.getMonth()}/${whatisnow.getFullYear()}`;
-            var time = `${get_hour} ${ampm}:${whatisnow.getMinutes()}:${whatisnow.getSeconds()}`;
+            var date = `Today is: ${day_of_week[whatisnow.getDay()]} ${whatisnow.getDate()}/${whatisnow.getMonth()+1}/${whatisnow.getFullYear()}`;
+            var time = `${get_hour} ${ampm} : ${whatisnow.getMinutes()}: ${whatisnow.getSeconds()}`;
             $('#today_date').text(date);
             $('#current_time').text(time);
+            $('#date1').text(`${whatisnow.getMonth()+1}-${whatisnow.getDate()}-${whatisnow.getFullYear()}`);
+            $('#date2').text(whatisnow);
         }, 1000);
+
+        function printTheWindow() {
+            window.print();
+        }
+
+        function guessNow() {
+            var my_guess = +prompt("Guess any number from 1 to 10");
+            while (isNaN(my_guess) || my_guess<1 || my_guess>10){
+                my_guess = prompt("Please, Guess any number from 1 to 10");
+            }
+            var comp_guess = (Math.floor(Math.random()*100))%10 + 1;
+            $('#guess_result').text((my_guess === comp_guess)? "Good Work" : "Not matched");
+        }
+
+        function multiply() {
+            var a = +$('#firstno').val();
+            var b = +$('#secondno').val();
+            $('#mul_div_result').text(a*b);
+        }
+
+        function divide() {
+            var a = $('#firstno').val();
+            var b = $('#secondno').val();
+            $('#mul_div_result').text(a/b);
+        }
+
+        console.log("Current website's URL: "+window.location.href);
     </script>
 </body>
 
