@@ -13,7 +13,8 @@
     <h1>Solutions to Assignment 8-JAVASCRIPT Part 2 MEAN</h1>
     <ol>
         <li>
-            <h4>Write a JavaScript program to display the current day and time in the following format. Sample Output :Today is : Friday.Current time is : 4 PM : 50 : 22</h4>
+            <h4>Write a JavaScript program to display the current day and time in the following format. Sample Output :Today
+                is : Friday.Current time is : 4 PM : 50 : 22</h4>
             <div id="today_date"></div>
             <div id="current_time"></div>
             <hr>
@@ -34,7 +35,9 @@
             <hr>
         </li>
         <li>
-            <h4>Write a JavaScript program where the program takes a random integer between 1 to 10, the user is then prompted to input a guess number. If the user input matches with guess number, the program will display a message "Good Work" otherwise display a message "Not matched".</h4>
+            <h4>Write a JavaScript program where the program takes a random integer between 1 to 10, the user is then prompted
+                to input a guess number. If the user input matches with guess number, the program will display a message
+                "Good Work" otherwise display a message "Not matched".</h4>
             <button onclick="guessNow()">Guess Me</button>
             <div id="guess_result"></div>
             <hr>
@@ -43,16 +46,28 @@
             <h4>Write a JavaScript program to calculate multiplication and division of two numbers (input from user)</h4>
             <table>
                 <tr>
-                    <td>1st Number:</td>  <td><input id="firstno" type="text"></td>
+                    <td>1st Number:</td>
+                    <td>
+                        <input id="firstno" type="text">
+                    </td>
                 </tr>
                 <tr>
-                    <td>2nd Number:</td>  <td><input id="secondno" type="text"></td>
+                    <td>2nd Number:</td>
+                    <td>
+                        <input id="secondno" type="text">
+                    </td>
                 </tr>
                 <tr>
-                    <td><button onclick="multiply()">Multiply</button></td> <td><button onclick="divide()">Divide</button></td>
+                    <td>
+                        <button onclick="multiply()">Multiply</button>
+                    </td>
+                    <td>
+                        <button onclick="divide()">Divide</button>
+                    </td>
                 </tr>
             </table>
-            The Result is: <br>
+            The Result is:
+            <br>
             <div id="mul_div_result"></div>
             <hr>
         </li>
@@ -61,7 +76,73 @@
             <i>Please look for the website's URL in the console</i>
             <hr>
         </li>
-        <li></li>
+        <li>
+            <h4>Write a JavaScript program to capitalize the first letter of each word of a given string</h4>
+            <input type="text" id="caps_first" onkeyup="capsFirst(this.value)"> &#8594; Result:
+            <span id="output_capsfirst">_______</span>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript program to check if a given string contains equal number of p's and s's present</h4>
+            <input type="text" onkeyup="ippassu(this.value)"> &#8594; Output:
+            <span id="pass_or_fail">_______</span>
+            <hr>
+        </li>
+        <li>
+            <h4>9.Write a JavaScript program to create a new string of 4 copies of the last 3 characters of a given original
+                string
+            </h4>
+            <input type="text" onkeyup="copylast3(this.value)"> &#8594; Output:
+            <span id="last3copies">_______</span>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript program to swap the first and last elements ofa given array of integers. The array length
+                should be at least 1</h4>
+            <div>
+                <label for="number_collector">Enter numbers here</label>
+                <input type="text" id="number_collector">
+                <button onclick="addExArray()">Add number to Array</button>
+            </div>
+            <button onclick="exchangeFlarr()">Exchange First-Last</button>
+            <button onclick="clearExArray()">Clear Array</button>
+
+            <div id="exchangearr">Array : [ ]</div>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript function that reverse a number. Using built in functions.</h4>
+            <input type="text" onkeyup="reverseNo(this.value)">&#8594; Output:
+            <span id="revnumber">_______</span>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript function that returns a passed string with letters in alphabetical order. Using built in functions</h4>
+            <input type="text" onkeyup="arrangeAlpha(this.value)">&#8594; Output:
+            <span id="alphaorder">_______</span>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript function that accepts a string as a parameter and find the longest word within the string.Using
+                builtin functions.
+            </h4>
+            <input type="text" onkeyup=""> &#8594; Output:
+            <span>_______</span>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript function that generates a string id (specified length) of random characters</h4>
+            <input type="text" onkeyup=""> &#8594; Output:
+            <span>_______</span>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript function to find longest substring in a given a string without repeating characters.</h4>
+            <input type="text" onkeyup=""> Length=
+            <input type="text" onkeyup=""> &#8594; Output:
+            <span>_______</span>
+            <hr>
+        </li>
     </ol>
 
 
@@ -69,14 +150,14 @@
         var keep_looping = setInterval(function () {
             var whatisnow = new Date();
             var get_hour = whatisnow.getHours();
-            var ampm = get_hour < 12 ?  'AM' : 'PM';
-            var hour_12hrformat = get_hour <= 12 ? get_hour : get_hour-12;
+            var ampm = get_hour < 12 ? 'AM' : 'PM';
+            var hour_12hrformat = get_hour <= 12 ? get_hour : get_hour - 12;
             var day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-            var date = `Today is: ${day_of_week[whatisnow.getDay()]} ${whatisnow.getDate()}/${whatisnow.getMonth()+1}/${whatisnow.getFullYear()}`;
+            var date = `Today is: ${day_of_week[whatisnow.getDay()]} ${whatisnow.getDate()}/${whatisnow.getMonth() + 1}/${whatisnow.getFullYear()}`;
             var time = `${get_hour} ${ampm} : ${whatisnow.getMinutes()}: ${whatisnow.getSeconds()}`;
             $('#today_date').text(date);
             $('#current_time').text(time);
-            $('#date1').text(`${whatisnow.getMonth()+1}-${whatisnow.getDate()}-${whatisnow.getFullYear()}`);
+            $('#date1').text(`${whatisnow.getMonth() + 1}-${whatisnow.getDate()}-${whatisnow.getFullYear()}`);
             $('#date2').text(whatisnow);
         }, 1000);
 
@@ -86,26 +167,115 @@
 
         function guessNow() {
             var my_guess = +prompt("Guess any number from 1 to 10");
-            while (isNaN(my_guess) || my_guess<1 || my_guess>10){
+            while (isNaN(my_guess) || my_guess < 1 || my_guess > 10) {
                 my_guess = prompt("Please, Guess any number from 1 to 10");
             }
-            var comp_guess = (Math.floor(Math.random()*100))%10 + 1;
-            $('#guess_result').text((my_guess === comp_guess)? "Good Work" : "Not matched");
+            var comp_guess = (Math.floor(Math.random() * 100)) % 10 + 1;
+            $('#guess_result').text((my_guess === comp_guess) ? "Good Work" : "Not matched");
         }
 
         function multiply() {
             var a = +$('#firstno').val();
             var b = +$('#secondno').val();
-            $('#mul_div_result').text(a*b);
+            $('#mul_div_result').text(a * b);
         }
 
         function divide() {
             var a = $('#firstno').val();
             var b = $('#secondno').val();
-            $('#mul_div_result').text(a/b);
+            $('#mul_div_result').text(a / b);
         }
 
-        console.log("Current website's URL: "+window.location.href);
+        console.log("Current website's URL: " + window.location.href);
+
+        function capsFirst(caps_first) {
+            if (caps_first.trim()) {
+                var arr_words = caps_first.split(' ');
+                var firstcaps_sent = '';
+                arr_words.forEach(word => {
+                    if (word.trim())
+                        firstcaps_sent += word[0].toUpperCase() + word.slice(1).toLowerCase() + " ";
+                });
+                document.getElementById('output_capsfirst').innerText = firstcaps_sent.trim();
+            } else {
+                document.getElementById('output_capsfirst').innerText = '____________';
+            }
+        }
+
+        function ippassu(word) {
+            word = word.replace(' ', '');
+            if (word) {
+                var p = 0;
+                var s = 0;
+                for (var i = 0; i < word.length; i++) {
+                    if (word[i] == 'p') p++;
+                    if (word[i] == 's') s++;
+                }
+                $('#pass_or_fail').text(p == s);
+            } else {
+                $('#pass_or_fail').text('_______');
+            }
+        }
+
+        function copylast3(word) {
+            if (word.trim().length > 2) {
+                var last3 = word.slice(word.length - 3);
+                $('#last3copies').text(last3 + last3 + last3 + last3);
+            } else {
+                $('#last3copies').text(false);
+            }
+        }
+
+        var exArray = [];
+
+        function printexArray() {
+            var arr = '';
+            exArray.forEach(ele => {
+                arr += ele + ','
+            });
+            $('#exchangearr').text(`Array : [ ${arr} ]`);
+        }
+
+        function addExArray() {
+            var t = $('#number_collector').val();
+            exArray.push(+t);
+            printexArray();
+            $('#number_collector').val('');
+        }
+
+        function clearExArray() {
+            exArray = [];
+            printexArray();
+        }
+
+        function exchangeFlarr() {
+            var temp;
+            var n = exArray.length;
+            if (n > 1) {
+                temp = exArray[0];
+                exArray[0] = exArray[n - 1];
+                exArray[n - 1] = temp;
+            }
+            printexArray();
+        }
+
+        function reverseNo(no) {
+            if (!isNaN(no))
+                $('#revnumber').text(no.split('').reverse().join(''));
+            else
+                $('#revnumber').text(no);
+            if (!no.length) $('#revnumber').text('_______');;
+        }
+
+        function arrangeAlpha(word) {
+            if (word) {
+                var arr = word.split('');
+                arr.sort();
+                $('#alphaorder').text(arr.join(''));
+            } else {
+                $('#alphaorder').text('_______');
+            }
+        }
     </script>
 </body>
 
