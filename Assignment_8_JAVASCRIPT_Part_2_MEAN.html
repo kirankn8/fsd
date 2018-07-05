@@ -97,7 +97,7 @@
             <hr>
         </li>
         <li>
-            <h4>Write a JavaScript program to swap the first and last elements ofa given array of integers. The array length
+            <h4>Write a JavaScript program to swap the first and last elements of a given array of integers. The array length
                 should be at least 1</h4>
             <div>
                 <label for="number_collector">Enter numbers here</label>
@@ -123,24 +123,39 @@
             <hr>
         </li>
         <li>
-            <h4>Write a JavaScript function that accepts a string as a parameter and find the longest word within the string.Using
-                builtin functions.
-            </h4>
-            <input type="text" onkeyup=""> &#8594; Output:
-            <span>_______</span>
+            <ul>
+                <li>
+                    <h4>Write a JavaScript function that accepts a string as a parameter and find the longest word within the
+                        string.Using builtin functions.
+                    </h4>
+                    <input type="text" onkeyup="findLongestString(this.value)"> &#8594; Output:
+                    <span id="longeststring">_______</span>
+                </li>
+                <li>
+                    <h4>Write a JavaScript function to extract unique characters from a string.</h4>
+                    <input type="text" onkeyup="extractUniqueString(this.value)"> &#8594; Output:
+                    <span id="uniquestring">_______</span>
+                </li>
+                <li>
+                    <h4>Write a JavaScript function to get the number of occurrences of each letter in specified string.</h4>
+                    <input type="text" onkeyup="getOccurenceString(this.value)"> &#8594; Output:
+                    <span id="occurences">_______</span>
+                </li>
+            </ul>
             <hr>
         </li>
         <li>
             <h4>Write a JavaScript function that generates a string id (specified length) of random characters</h4>
-            <input type="text" onkeyup=""> &#8594; Output:
-            <span>_______</span>
+            String=
+            <input type="text" onkeyup="getStringForId(this.value)"> Length=
+            <input type="number" onkeyup="updateIdLength(this.value)" value="1"> &#8594; Output:
+            <span id="randomId">_______</span>
             <hr>
         </li>
         <li>
             <h4>Write a JavaScript function to find longest substring in a given a string without repeating characters.</h4>
-            <input type="text" onkeyup=""> Length=
-            <input type="text" onkeyup=""> &#8594; Output:
-            <span>_______</span>
+            <input type="text" onkeyup="findLongSubstr(this.value)"> &#8594; Output:
+            <span id="longsubstr">_______</span>
             <hr>
         </li>
     </ol>
@@ -229,11 +244,7 @@
         var exArray = [];
 
         function printexArray() {
-            var arr = '';
-            exArray.forEach(ele => {
-                arr += ele + ','
-            });
-            $('#exchangearr').text(`Array : [ ${arr} ]`);
+            $('#exchangearr').text(`Array : ` + JSON.stringify(exArray));
         }
 
         function addExArray() {
@@ -274,6 +285,80 @@
                 $('#alphaorder').text(arr.join(''));
             } else {
                 $('#alphaorder').text('_______');
+            }
+        }
+
+        function findLongestString(sentence) {
+            var arr = sentence.split(' ');
+            arr.sort((a, b) => { return b.length - a.length; });
+            $('#longeststring').text(arr[0]);
+        }
+
+        function extractUniqueString(sentence) {
+            var sset = new Set();
+            var uniq = '';
+            for (var i = 0; i < sentence.length; i++) {
+                if (!sset.has(sentence[i])) {
+                    //add to set and append
+                    sset.add(sentence[i]);
+                    uniq += sentence[i];
+                }
+            }
+            $('#uniquestring').text(uniq);
+        }
+
+        function getOccurenceString(sentence) {
+            sentence = sentence.replace(/\s/g, '');
+            var arr = sentence.split('');
+            var dict = {};
+            arr.forEach(ele => {
+                if (ele in dict) {
+                    dict[ele] += 1;
+                } else {
+                    dict[ele] = 1;
+                }
+            });
+            $('#occurences').html(JSON.stringify(dict));
+        }
+
+        var stringID = '';
+        var stringID_length = 1;
+        function getStringForId(word) {
+            stringID = word;
+            generateID();
+        }
+
+        function updateIdLength(n) {
+            stringID_length = n;
+            generateID();
+        }
+
+        function generateID() {
+            if (stringID.trim()) {
+                var tmp = stringID.length * 7;
+                var uid;
+                uniqID = '';
+                for (var i = 0; i < stringID_length; i++) {
+                    uid = Math.floor(Math.random() * tmp);
+                    console.log(uid);
+                    uid = uid % stringID.length;
+                    console.log(uid);
+                    uniqID += stringID[uid];
+                }
+                $('#randomId').text(uniqID);
+            } else {
+                $('#randomId').text('_______');
+            }
+        }
+
+        function findLongSubstr(str) {
+            if (str) {
+                var new_str = str.replace(/(.)\1{1,}/gi, ' ');
+                var arr = new_str.split(' ');
+                arr.sort((a, b) => { return b.length - a.length; });
+                $('#longsubstr').text(arr[0]);
+            } else {
+                $('#longsubstr').text('_______');
             }
         }
     </script>
