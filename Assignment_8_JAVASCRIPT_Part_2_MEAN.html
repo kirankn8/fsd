@@ -25,12 +25,13 @@
             <hr>
         </li>
         <li>
-            <b>TODO</b>
             <h4>Write a JavaScript program to get the current date. Expected Output:mm-dd-yyyy, mm/dd/yyyy or dd-mm-yyyy, dd/mm/yyyy</h4>
             <div>Current Date</div>
             <ul>
                 <li id="date1"></li>
                 <li id="date2"></li>
+                <li id="date3"></li>
+                <li id="date4"></li>
             </ul>
             <hr>
         </li>
@@ -73,7 +74,7 @@
         </li>
         <li>
             <h4>Write a JavaScript program to get the website URL (loading page) & print on console.</h4>
-            <i>Please look for the website's URL in the console</i>
+            <i>Please look into the browser's console for the website's URL</i>
             <hr>
         </li>
         <li>
@@ -89,8 +90,7 @@
             <hr>
         </li>
         <li>
-            <h4>9.Write a JavaScript program to create a new string of 4 copies of the last 3 characters of a given original
-                string
+            <h4>Write a JavaScript program to create a new string of 4 copies of the last 3 characters of a given original string
             </h4>
             <input type="text" onkeyup="copylast3(this.value)"> &#8594; Output:
             <span id="last3copies">_______</span>
@@ -170,10 +170,15 @@
             var day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
             var date = `Today is: ${day_of_week[whatisnow.getDay()]} ${whatisnow.getDate()}/${whatisnow.getMonth() + 1}/${whatisnow.getFullYear()}`;
             var time = `${get_hour} ${ampm} : ${whatisnow.getMinutes()}: ${whatisnow.getSeconds()}`;
+
+
             $('#today_date').text(date);
             $('#current_time').text(time);
-            $('#date1').text(`${whatisnow.getMonth() + 1}-${whatisnow.getDate()}-${whatisnow.getFullYear()}`);
-            $('#date2').text(whatisnow);
+            $('#date1').text(`${("0" + (whatisnow.getMonth() + 1)).slice(-2)}-${("0" + whatisnow.getDate()).slice(-2)}-${whatisnow.getFullYear()}`);
+            $('#date2').text(`${("0" + (whatisnow.getMonth() + 1)).slice(-2)}/${("0" + whatisnow.getDate()).slice(-2)}/${whatisnow.getFullYear()}`);
+            $('#date3').text(`${("0" + whatisnow.getDate()).slice(-2)}-${("0" + (whatisnow.getMonth() + 1)).slice(-2)}-${whatisnow.getFullYear()}`);
+            $('#date4').text(`${("0" + whatisnow.getDate()).slice(-2)}/${("0" + (whatisnow.getMonth() + 1)).slice(-2)}/${whatisnow.getFullYear()}`);
+
         }, 1000);
 
         function printTheWindow() {
