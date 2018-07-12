@@ -5,12 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>06-CSS Assignment MEAN</title>
+    <title>HTML5 Contact Form</title>
+    <style>
+        .wrapper {
+            position: relative;
+            border: 1px solid rgb(163, 163, 163);
+            display: inline-block;
+        }
+
+        /* .wrapper::after {
+            content: '*';
+            color: red;
+            float: right;
+            padding-right: 5px;
+            margin: auto;
+            max-width: 10px;
+            vertical-align: middle;
+            text-align: center;
+        } */
+
+        .wrapper>input {
+            border: none;
+            width: 90%;
+            outline: none;
+            padding: 0;
+            margin-left: 1px;
+            margin-top: 0;
+        }
+
+        .wrapper>textarea {
+            border: none;
+            width: 90%;
+            outline: none;
+            margin: 2px;
+        }
+
+        /* .wrapper::after {
+            content: "\002714";
+            font-size: 12px;
+            font-weight: bolder;
+            color: white;
+            background-color: rgb(0, 255, 0);
+            border-radius: 100%;
+            float: right;
+            padding-right: 8px;
+            margin: auto;
+            max-width: 10px;
+            vertical-align: middle;
+            text-align: center;
+        } */
+
+        .required.asterix {
+            content: '*';
+            color: red;
+            text-align: center;
+            vertical-align: middle;
+            padding: 0px;
+            margin: auto;
+        }
+
+        .required.valid {
+            content: "\002714";
+            font-size: 12px;
+            font-weight: bolder;
+            color: white;
+            background-color: rgb(0, 255, 0);
+            border-radius: 100%;
+            float: right;
+            padding-right: 0px;
+            margin: auto;
+            max-width: 10px;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
     <hr>
     <h2>Contact Us</h2>
+    <span style="float:right; color: red;">* Denotes required field</span>
     <hr>
 
     <form action="/" method="POST">
@@ -20,7 +94,10 @@
                     <label for="name">Name</label>
                 </td>
                 <td>
-                    <input type="text" id="name">
+                    <div class="wrapper">
+                        <input type="text" id="name" required>
+                        <span class="required asterix">*</span>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -28,7 +105,11 @@
                     <label for="email">Email</label>
                 </td>
                 <td>
-                    <input type="text" id="email">
+                    <div class="wrapper">
+                        <input type="email" id="email" required>
+                        <span class="required asterix">*</span>
+                    </div>
+                    <span>Proper format "name@something.com"</span>
                 </td>
             </tr>
             <tr>
@@ -36,7 +117,11 @@
                     <label for="website">Website</label>
                 </td>
                 <td>
-                    <input type="text" id="website">
+                    <div class="wrapper">
+                        <input type="url" id="website" required>
+                        <span class="required asterix">*</span>
+                    </div>
+                    <span>Proper format "http://someaddress.com"</span>
                 </td>
             </tr>
             <tr>
@@ -44,7 +129,10 @@
                     <label for="message">Message</label>
                 </td>
                 <td>
-                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                    <div class="wrapper">
+                        <textarea name="message" id="message" cols="30" rows="10" required></textarea>
+                        <span class="required asterix">*</span>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -55,6 +143,49 @@
             </tr>
         </table>
     </form>
+    <hr>
+    <script>
+        function mark_valid(ele_i) {
+            var field = document.getElementsByClassName("required");
+            field[ele_i].innerHTML = "&#10004;";
+            field[ele_i].classList.remove("asterix");
+            field[ele_i].classList.add("valid");
+        }
+        function mark_required(ele_i) {
+            var field = document.getElementsByClassName("required");
+            field[ele_i].innerHTML = "*";
+            field[ele_i].classList.remove('valid');
+            field[ele_i].classList.add('asterix');
+        }
+        document.getElementById("name").addEventListener("keyup", () => {
+            var ele = document.getElementById("name");
+            if (ele.value)
+                mark_valid(0);
+            else
+                mark_required(0);
+        });
+        document.getElementById("email").addEventListener("keyup", () => {
+            var ele = document.getElementById("email");
+            if (ele.value)
+                mark_valid(1);
+            else
+                mark_required(1);
+        });
+        document.getElementById("website").addEventListener("keyup", () => {
+            var ele = document.getElementById("website");
+            if (ele.value)
+                mark_valid(2);
+            else
+                mark_required(2);
+        });
+        document.getElementById("message").addEventListener("keyup", () => {
+            var ele = document.getElementById("message");
+            if (ele.value)
+                mark_valid(3);
+            else
+                mark_required(3);
+        });
+    </script>
 </body>
 
 </html>
