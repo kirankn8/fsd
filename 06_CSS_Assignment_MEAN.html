@@ -7,184 +7,169 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTML5 Contact Form</title>
     <style>
-        .wrapper {
-            position: relative;
-            border: 1px solid rgb(163, 163, 163);
-            display: inline-block;
+        body {
+            margin: auto;
+            padding: 8em;
+            padding-top: 6em;
         }
 
-        /* .wrapper::after {
-            content: '*';
-            color: red;
-            float: right;
+        .container {
+            padding-left: 5px;
             padding-right: 5px;
-            margin: auto;
-            max-width: 10px;
-            vertical-align: middle;
-            text-align: center;
-        } */
-
-        .wrapper>input {
-            border: none;
-            width: 90%;
-            outline: none;
-            padding: 0;
-            margin-left: 1px;
-            margin-top: 0;
         }
 
-        .wrapper>textarea {
-            border: none;
-            width: 90%;
-            outline: none;
-            margin: 2px;
-        }
-
-        /* .wrapper::after {
-            content: "\002714";
-            font-size: 12px;
-            font-weight: bolder;
-            color: white;
-            background-color: rgb(0, 255, 0);
-            border-radius: 100%;
-            float: right;
-            padding-right: 8px;
-            margin: auto;
-            max-width: 10px;
-            vertical-align: middle;
-            text-align: center;
-        } */
-
-        .required.asterix {
-            content: '*';
+        .required_msg {
             color: red;
-            text-align: center;
-            vertical-align: middle;
-            padding: 0px;
-            margin: auto;
         }
 
-        .required.valid {
-            content: "\002714";
-            font-size: 12px;
-            font-weight: bolder;
+        label {
+            padding-right: 50px;
+        }
+
+        input {
+            height: 2em;
+            border-color: lightgrey;
+            outline-color: grey;
+            border-style: solid;
+        }
+
+        input:valid:not([type=submit]) {
+            border-color: rgb(8, 255, 0);
+            background: #e6ffe6 url(http://webdesigntutsplus.s3.amazonaws.com/tuts/214_html5_form_validation/demo/images/valid.png) no-repeat 97% center;
+            outline-color: rgb(8, 255, 0);
+        }
+
+        input:invalid:not([type=submit]) {
+            border-color: lightgrey;
+            background: white url(data:image/png;base64,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) no-repeat 97% center;
+            background-size: 8px;
+            outline-color: grey;
+        }
+
+        textarea:valid {
+            border-color: rgb(8, 255, 0);
+            background: #e6ffe6 url(http://webdesigntutsplus.s3.amazonaws.com/tuts/214_html5_form_validation/demo/images/valid.png) no-repeat 97% center;
+            outline-color: rgb(8, 255, 0);
+        }
+
+        textarea:invalid {
+            border-color: lightgrey;
+            background: white url(data:image/png;base64,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) no-repeat 97% center;
+            background-size: 8px;
+            outline-color: grey;
+        }
+
+        .submit_form_btn {
+            margin-top: 2em;
+            border-radius: 5px;
+            border-style: solid;
+            border-color: grey;
+            border-width: 1px;
+            height: 1.5em;
+            outline: none;
+        }
+
+        .msg {
+            font-size: 14px;
+        }
+
+        .submit_form_btn_valid {
+            margin-top: 2em;
+            border-radius: 5px;
+            border-style: solid;
+            border-color: #1bad1b;
+            background-color: #1bad1b;
             color: white;
-            background-color: rgb(0, 255, 0);
-            border-radius: 100%;
-            float: right;
-            padding-right: 0px;
-            margin: auto;
-            max-width: 10px;
-            vertical-align: middle;
-            text-align: center;
+            border-width: 1px;
+            height: 2.5em;
+            width: 10em;
+            outline: none;
+        }
+
+        input:valid+.msg {
+            display: none;
         }
     </style>
 </head>
 
 <body>
     <hr>
-    <h2>Contact Us</h2>
-    <span style="float:right; color: red;">* Denotes required field</span>
-    <hr>
+    <div class="container">
+        <h2>Contact Us</h2>
+        <span class="required_msg">* Denotes required field</span>
+        <hr>
 
-    <form action="/" method="POST">
-        <table>
-            <tr>
-                <td>
-                    <label for="name">Name</label>
-                </td>
-                <td>
-                    <div class="wrapper">
-                        <input type="text" id="name" required>
-                        <span class="required asterix">*</span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="email">Email</label>
-                </td>
-                <td>
-                    <div class="wrapper">
-                        <input type="email" id="email" required>
-                        <span class="required asterix">*</span>
-                    </div>
-                    <span>Proper format "name@something.com"</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="website">Website</label>
-                </td>
-                <td>
-                    <div class="wrapper">
-                        <input type="url" id="website" required>
-                        <span class="required asterix">*</span>
-                    </div>
-                    <span>Proper format "http://someaddress.com"</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="message">Message</label>
-                </td>
-                <td>
-                    <div class="wrapper">
-                        <textarea name="message" id="message" cols="30" rows="10" required></textarea>
-                        <span class="required asterix">*</span>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button type="submit">Submit Form</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-    <hr>
+        <form action="/" method="POST">
+            <table>
+                <tr>
+                    <td>
+                        <label for="name">Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="name" size="45" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="email">Email:</label>
+                    </td>
+                    <td>
+                        <input type="email" id="email" size="40" pattern="^\S+@(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})$"
+                            required>
+                        <span id="email_msg" class="msg">Proper format "name@something.com"</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="website">Website:</label>
+                    </td>
+                    <td>
+                        <input type="url" id="website" size="40" pattern="^(https?://)?(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})(/[\w\d:#@%/;$()~_?\+-=\\\.&]*)?$"
+                            required>
+                        <span id="website_msg" class="msg">Proper format "http://someaddress.com"</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="message">Message:</label>
+                    </td>
+                    <td>
+                        <textarea name="message" id="message" cols="60" rows="10" required></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button id="submit_btn" class="submit_form_btn" type="submit">Submit Form</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <hr>
+    </div>
+
     <script>
-        function mark_valid(ele_i) {
-            var field = document.getElementsByClassName("required");
-            field[ele_i].innerHTML = "&#10004;";
-            field[ele_i].classList.remove("asterix");
-            field[ele_i].classList.add("valid");
+        var inputs = document.getElementsByTagName("input");
+        console.log(inputs);
+        // Get all buttons with class="btn" inside the container
+        var btn = document.getElementById("submit_btn");
+        var valid_fields = 0;
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener("input", function () {
+                console.log(inputs[i]);
+                if (inputs[i].validity.valid)
+                    valid_fields++;
+                else
+                    valid_fields--;
+            });
+            if (valid_fields == inputs.length) {
+                btn.classList.remove("submit_form_btn");
+                btn.classList.add("submit_form_btn_valid");
+            } else {
+                btn.classList.remove("submit_form_btn_valid");
+                btn.classList.add("submit_form_btn");
+            }
         }
-        function mark_required(ele_i) {
-            var field = document.getElementsByClassName("required");
-            field[ele_i].innerHTML = "*";
-            field[ele_i].classList.remove('valid');
-            field[ele_i].classList.add('asterix');
-        }
-        document.getElementById("name").addEventListener("keyup", () => {
-            var ele = document.getElementById("name");
-            if (ele.value)
-                mark_valid(0);
-            else
-                mark_required(0);
-        });
-        document.getElementById("email").addEventListener("keyup", () => {
-            var ele = document.getElementById("email");
-            if (ele.value)
-                mark_valid(1);
-            else
-                mark_required(1);
-        });
-        document.getElementById("website").addEventListener("keyup", () => {
-            var ele = document.getElementById("website");
-            if (ele.value)
-                mark_valid(2);
-            else
-                mark_required(2);
-        });
-        document.getElementById("message").addEventListener("keyup", () => {
-            var ele = document.getElementById("message");
-            if (ele.value)
-                mark_valid(3);
-            else
-                mark_required(3);
-        });
     </script>
 </body>
 
