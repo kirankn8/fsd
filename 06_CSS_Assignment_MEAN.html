@@ -20,6 +20,8 @@
 
         .required_msg {
             color: red;
+            float: right;
+            padding-top: 10px;
         }
 
         label {
@@ -35,7 +37,7 @@
 
         input:valid:not([type=submit]) {
             border-color: rgb(8, 255, 0);
-            background: #e6ffe6 url(http://webdesigntutsplus.s3.amazonaws.com/tuts/214_html5_form_validation/demo/images/valid.png) no-repeat 97% center;
+            background: white url(http://webdesigntutsplus.s3.amazonaws.com/tuts/214_html5_form_validation/demo/images/valid.png) no-repeat 97% center;
             outline-color: rgb(8, 255, 0);
         }
 
@@ -48,7 +50,7 @@
 
         textarea:valid {
             border-color: rgb(8, 255, 0);
-            background: #e6ffe6 url(http://webdesigntutsplus.s3.amazonaws.com/tuts/214_html5_form_validation/demo/images/valid.png) no-repeat 97% center;
+            background: white url(http://webdesigntutsplus.s3.amazonaws.com/tuts/214_html5_form_validation/demo/images/valid.png) no-repeat 97% center;
             outline-color: rgb(8, 255, 0);
         }
 
@@ -73,7 +75,11 @@
             font-size: 14px;
         }
 
-        .submit_form_btn_valid {
+        input:valid+.msg {
+            display: none;
+        }
+
+        form:valid button {
             margin-top: 2em;
             border-radius: 5px;
             border-style: solid;
@@ -86,8 +92,14 @@
             outline: none;
         }
 
-        input:valid+.msg {
-            display: none;
+        tr:not(:last-child) td {
+            border-bottom: 1px solid rgb(238, 238, 238);
+            padding-bottom: 10px;
+            padding-top: 5px;
+        }
+
+        table {
+            width: 100%;
         }
     </style>
 </head>
@@ -95,8 +107,8 @@
 <body>
     <hr>
     <div class="container">
-        <h2>Contact Us</h2>
         <span class="required_msg">* Denotes required field</span>
+        <h2>Contact Us</h2>
         <hr>
 
         <form action="/" method="POST">
@@ -114,7 +126,7 @@
                         <label for="email">Email:</label>
                     </td>
                     <td>
-                        <input type="email" id="email" size="40" pattern="^\S+@(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})$"
+                        <input type="email" id="email" placeholder="john_doe@example.com" size="40" pattern="^\S+@(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})$"
                             required>
                         <span id="email_msg" class="msg">Proper format "name@something.com"</span>
                     </td>
@@ -124,7 +136,7 @@
                         <label for="website">Website:</label>
                     </td>
                     <td>
-                        <input type="url" id="website" size="40" pattern="^(https?://)?(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})(/[\w\d:#@%/;$()~_?\+-=\\\.&]*)?$"
+                        <input type="url" id="website" size="40" placeholder="http://johndoe.com" pattern="^(https?://)?(([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6})(/[\w\d:#@%/;$()~_?\+-=\\\.&]*)?$"
                             required>
                         <span id="website_msg" class="msg">Proper format "http://someaddress.com"</span>
                     </td>
@@ -147,30 +159,6 @@
         </form>
         <hr>
     </div>
-
-    <script>
-        var inputs = document.getElementsByTagName("input");
-        console.log(inputs);
-        // Get all buttons with class="btn" inside the container
-        var btn = document.getElementById("submit_btn");
-        var valid_fields = 0;
-        for (var i = 0; i < inputs.length; i++) {
-            inputs[i].addEventListener("input", function () {
-                console.log(inputs[i]);
-                if (inputs[i].validity.valid)
-                    valid_fields++;
-                else
-                    valid_fields--;
-            });
-            if (valid_fields == inputs.length) {
-                btn.classList.remove("submit_form_btn");
-                btn.classList.add("submit_form_btn_valid");
-            } else {
-                btn.classList.remove("submit_form_btn_valid");
-                btn.classList.add("submit_form_btn");
-            }
-        }
-    </script>
 </body>
 
 </html>
