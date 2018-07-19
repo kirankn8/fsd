@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Solutions to Assignment 8-JAVASCRIPT Part 2 MEAN</title>
+    <title>Solutions to 08-JAVASCRIPT Assignment</title>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
 <body>
-    <h1>Solutions to Assignment 8-JAVASCRIPT Part 2 MEAN</h1>
+    <h1>Solutions to 08-JAVASCRIPT Assignment</h1>
     <ol>
         <li>
             <h4>Write a JavaScript program to display the current day and time in the following format. Sample Output :Today
@@ -168,17 +168,16 @@
             var ampm = get_hour < 12 ? 'AM' : 'PM';
             var hour_12hrformat = get_hour <= 12 ? get_hour : get_hour - 12;
             var day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-            var date = `Today is: ${day_of_week[whatisnow.getDay()]} ${whatisnow.getDate()}/${whatisnow.getMonth() + 1}/${whatisnow.getFullYear()}`;
-            var time = `${get_hour} ${ampm} : ${whatisnow.getMinutes()}: ${whatisnow.getSeconds()}`;
+            // var date = `Today is: ${day_of_week[whatisnow.getDay()]} ${whatisnow.getDate()}/${whatisnow.getMonth() + 1}/${whatisnow.getFullYear()}`;
+            var date = `Today is: ${day_of_week[whatisnow.getDay()]}`;
+            var time = `Current time is: ${get_hour} ${ampm} : ${whatisnow.getMinutes()}: ${whatisnow.getSeconds()}`;
 
-
-            $('#today_date').text(date);
-            $('#current_time').text(time);
-            $('#date1').text(`${("0" + (whatisnow.getMonth() + 1)).slice(-2)}-${("0" + whatisnow.getDate()).slice(-2)}-${whatisnow.getFullYear()}`);
-            $('#date2').text(`${("0" + (whatisnow.getMonth() + 1)).slice(-2)}/${("0" + whatisnow.getDate()).slice(-2)}/${whatisnow.getFullYear()}`);
-            $('#date3').text(`${("0" + whatisnow.getDate()).slice(-2)}-${("0" + (whatisnow.getMonth() + 1)).slice(-2)}-${whatisnow.getFullYear()}`);
-            $('#date4').text(`${("0" + whatisnow.getDate()).slice(-2)}/${("0" + (whatisnow.getMonth() + 1)).slice(-2)}/${whatisnow.getFullYear()}`);
-
+            document.getElementById('today_date').innerText = date;
+            document.getElementById('current_time').innerText = time;
+            document.getElementById('date1').innerText = `${("0" + (whatisnow.getMonth() + 1)).slice(-2)}-${("0" + whatisnow.getDate()).slice(-2)}-${whatisnow.getFullYear()}`;
+            document.getElementById('date2').innerText = `${("0" + (whatisnow.getMonth() + 1)).slice(-2)}/${("0" + whatisnow.getDate()).slice(-2)}/${whatisnow.getFullYear()}`;
+            document.getElementById('date3').innerText = `${("0" + whatisnow.getDate()).slice(-2)}-${("0" + (whatisnow.getMonth() + 1)).slice(-2)}-${whatisnow.getFullYear()}`;
+            document.getElementById('date4').innerText = `${("0" + whatisnow.getDate()).slice(-2)}/${("0" + (whatisnow.getMonth() + 1)).slice(-2)}/${whatisnow.getFullYear()}`;
         }, 1000);
 
         function printTheWindow() {
@@ -191,19 +190,19 @@
                 my_guess = prompt("Please, Guess any number from 1 to 10");
             }
             var comp_guess = (Math.floor(Math.random() * 100)) % 10 + 1;
-            $('#guess_result').text((my_guess === comp_guess) ? "Good Work" : "Not matched");
+            document.getElementById('guess_result').innerText = (my_guess === comp_guess) ? "Good Work" : "Not matched";
         }
 
         function multiply() {
-            var a = +$('#firstno').val();
-            var b = +$('#secondno').val();
-            $('#mul_div_result').text(a * b);
+            var a = +document.getElementById('firstno').value;
+            var b = +document.getElementById('secondno').value;
+            document.getElementById('mul_div_result').innerText = a * b;
         }
 
         function divide() {
-            var a = $('#firstno').val();
-            var b = $('#secondno').val();
-            $('#mul_div_result').text(a / b);
+            var a = +document.getElementById('firstno').value;
+            var b = +document.getElementById('secondno').value;
+            document.getElementById('mul_div_result').innerText = a / b;
         }
 
         console.log("Current website's URL: " + window.location.href);
@@ -231,32 +230,32 @@
                     if (word[i] == 'p') p++;
                     if (word[i] == 's') s++;
                 }
-                $('#pass_or_fail').text(p == s);
+                document.getElementById('pass_or_fail').innerText = (p == s);
             } else {
-                $('#pass_or_fail').text('_______');
+                document.getElementById('pass_or_fail').innerText = '_______';
             }
         }
 
         function copylast3(word) {
             if (word.trim().length > 2) {
                 var last3 = word.slice(word.length - 3);
-                $('#last3copies').text(last3 + last3 + last3 + last3);
+                document.getElementById('last3copies').innerText = last3 + last3 + last3 + last3;
             } else {
-                $('#last3copies').text(false);
+                document.getElementById('last3copies').innerText = false;
             }
         }
 
         var exArray = [];
 
         function printexArray() {
-            $('#exchangearr').text(`Array : ` + JSON.stringify(exArray));
+            document.getElementById('exchangearr').innerText = `Array : ` + JSON.stringify(exArray);
         }
 
         function addExArray() {
-            var t = $('#number_collector').val();
+            var t = document.getElementById('number_collector').value;
             exArray.push(+t);
             printexArray();
-            $('#number_collector').val('');
+            document.getElementById('number_collector').value = '';
         }
 
         function clearExArray() {
@@ -277,26 +276,26 @@
 
         function reverseNo(no) {
             if (!isNaN(no))
-                $('#revnumber').text(no.split('').reverse().join(''));
+                document.getElementById('revnumber').innerText = no.split('').reverse().join('');
             else
-                $('#revnumber').text(no);
-            if (!no.length) $('#revnumber').text('_______');;
+                document.getElementById('revnumber').innerText = no;
+            if (!no.length) document.getElementById('revnumber').innerText = '_______';
         }
 
         function arrangeAlpha(word) {
             if (word) {
                 var arr = word.split('');
                 arr.sort();
-                $('#alphaorder').text(arr.join(''));
+                document.getElementById('alphaorder').innerText = arr.join('');
             } else {
-                $('#alphaorder').text('_______');
+                document.getElementById('alphaorder').innerText = '_______';
             }
         }
 
         function findLongestString(sentence) {
             var arr = sentence.split(' ');
             arr.sort((a, b) => { return b.length - a.length; });
-            $('#longeststring').text(arr[0]);
+            document.getElementById('longeststring').innerText = arr[0];
         }
 
         function extractUniqueString(sentence) {
@@ -309,7 +308,7 @@
                     uniq += sentence[i];
                 }
             }
-            $('#uniquestring').text(uniq);
+            document.getElementById('uniquestring').innerText = uniq;
         }
 
         function getOccurenceString(sentence) {
@@ -323,7 +322,7 @@
                     dict[ele] = 1;
                 }
             });
-            $('#occurences').html(JSON.stringify(dict));
+            document.getElementById('occurences').innerHTML = JSON.stringify(dict);
         }
 
         var stringID = '';
@@ -345,14 +344,12 @@
                 uniqID = '';
                 for (var i = 0; i < stringID_length; i++) {
                     uid = Math.floor(Math.random() * tmp);
-                    console.log(uid);
                     uid = uid % stringID.length;
-                    console.log(uid);
                     uniqID += stringID[uid];
                 }
-                $('#randomId').text(uniqID);
+                document.getElementById('randomId').innerText = uniqID;
             } else {
-                $('#randomId').text('_______');
+                document.getElementById('randomId').innerText = '_______';
             }
         }
 
@@ -361,9 +358,9 @@
                 var new_str = str.replace(/(.)\1{1,}/gi, ' ');
                 var arr = new_str.split(' ');
                 arr.sort((a, b) => { return b.length - a.length; });
-                $('#longsubstr').text(arr[0]);
+                document.getElementById('longsubstr').innerText = arr[0];
             } else {
-                $('#longsubstr').text('_______');
+                document.getElementById('longsubstr').innerText = '_______';
             }
         }
     </script>
