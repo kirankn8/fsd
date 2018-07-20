@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>09-BOOTSTRAP Assignment MEAN</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+
+    <style>
+        .custom-card {
+            width: 28rem;
+            margin: auto;
+        }
+
+        .bg-light-grey {
+            background-color: rgb(69, 73, 85);
+            border: none;
+            color: rgb(153, 153, 153);
+        }
+
+        .bg-light-grey::placeholder {
+            color: rgb(129, 129, 129);
+            font-weight: 450;
+        }
+
+        .bg-md-grey {
+            background-color: rgb(46, 49, 54);
+            border: none;
+        }
+
+        .bg-dark-grey {
+            background-color: rgb(34, 37, 42);
+            border: none;
+        }
+
+        hr {
+            border-bottom: 1px dashed rgb(61, 61, 61);
+        }
+
+        .btn-bg-grey {
+            background-color: rgb(82, 89, 99);
+            font-weight: bolder;
+            margin-top: 1em;
+        }
+
+        label {
+            color: rgb(139, 139, 139);
+            font-weight: 450;
+        }
+
+        label.atc_label {
+            vertical-align: 1px;
+        }
+    </style>
+</head>
+
+<body class="bg-md-grey">
+    <br>
+    <div class="container">
+        <div class="card bg-dark-grey text-white custom-card">
+            <h5 class="card-header bg-light-grey text-center">Sign up</h5>
+            <div class="card-body bg-dark-grey text-white">
+                <form action="/" method="POST">
+                    <div class="form-group">
+                        <label for="usr">Username</label>
+                        <input type="text" class="form-control bg-light-grey" id="usr" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="eml">Email</label>
+                        <input type="text" class="form-control bg-light-grey" id="eml" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password</label>
+                        <input type="password" class="form-control bg-light-grey" id="pwd" name="pwd" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="retype_pwd">Retype Password</label>
+                        <input type="password" class="form-control bg-light-grey" id="retype_pwd" name="retype_pwd" placeholder="Retype Password">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" id="atc" name="atc">
+                        <label for="atc" class="atc_label">Accept the terms and policies</label>
+                    </div>
+                    <button type="submit" class="btn btn-info">SIGN UP</button>
+
+                    <hr>
+                    <div class="text-center">
+                        <div>Already have an account?</div>
+                        <button type="submit" class="btn btn-bg-grey btn-block text-white">SIGN IN</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
