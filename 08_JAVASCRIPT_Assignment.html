@@ -154,7 +154,8 @@
         </li>
         <li>
             <h4>Write a JavaScript function to find longest substring in a given a string without repeating characters.</h4>
-            <input type="text" onkeyup="findLongSubstr(this.value)"> &#8594; Output:
+            <input type="text" id="longstr">
+            <button onclick="findLongSubstr()">Go</button> &#8594; Output:
             <span id="longsubstr">_______</span>
             <hr>
         </li>
@@ -353,12 +354,51 @@
             }
         }
 
-        function findLongSubstr(str) {
+        function find_duplicate(str, str_len) {
+            // TODO: for punctuations
+            var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0];
+            var hashcode;
+            for (var i = 0; i < str_len; i++) {
+                hashcode = str.charCodeAt(i) % 26;
+                arr[hashcode]++;
+                if (arr[hashcode] > 1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function findLongSubstr() {
+            console.log(find_duplicate("example.com", 10));
+            var str = document.getElementById('longstr').value;
             if (str) {
-                var new_str = str.replace(/(.)\1{1,}/gi, ' ');
-                var arr = new_str.split(' ');
-                arr.sort((a, b) => { return b.length - a.length; });
-                document.getElementById('longsubstr').innerText = arr[0];
+                var len = str.length;
+                var s = '';
+                var k;
+                var t = '';
+                var longest_substr = str[0];
+                var longest_substr_length = 1;
+                for (var i = 0; i < len - 1; i++) {
+                    s = str.substring(i, i + 1);
+                    for (var j = i + 1; j < len; j++) {
+                        s = s + str[j];
+                        if (j - i + 1 != 2) {
+                            k = s.split('').sort();
+                            t = k.join('');
+                        } else {
+                            t = s;
+                        }
+                        if (!(/(.)\1{1,}/gi).test(t)) {
+                            if (longest_substr_length < (j - i + 1)) {
+                                longest_substr = s;
+                                longest_substr_length = j - i + 1;
+                            }
+                        }
+                    }
+                }
+                document.getElementById('longsubstr').innerText = longest_substr;
             } else {
                 document.getElementById('longsubstr').innerText = '_______';
             }
