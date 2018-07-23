@@ -354,24 +354,7 @@
             }
         }
 
-        function find_duplicate(str, str_len) {
-            // TODO: for punctuations
-            var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0];
-            var hashcode;
-            for (var i = 0; i < str_len; i++) {
-                hashcode = str.charCodeAt(i) % 26;
-                arr[hashcode]++;
-                if (arr[hashcode] > 1) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         function findLongSubstr() {
-            console.log(find_duplicate("example.com", 10));
             var str = document.getElementById('longstr').value;
             if (str) {
                 var len = str.length;
