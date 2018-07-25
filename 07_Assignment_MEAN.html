@@ -6,10 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>07-Assignment MEAN</title>
+    <style>
+        #bgcolorchange {
+            padding: 2em;
+        }
+    </style>
 </head>
 
 <body>
+    <h1>07-Assignment MEAN</h1>
+    <ol>
+        <li>
+            <h3></h3>
+            <hr>
+        </li>
+        <li>
+            <h3></h3>
+            <hr>
+        </li>
+        <li>
+            <h3>Write a JavaScript program to set the background color of a paragraph</h3>
+            <p id="bgcolorchange">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit soluta quos sapiente ipsa minima quod praesentium aut in nemo
+                optio? Necessitatibus illum distinctio consequuntur totam! Consectetur cupiditate pariatur repudiandae soluta!
+            </p>
+            <button onclick="changeBGColorofP()">Change above paragraph's background color</button>
+            <hr>
+        </li>
+        <li>
+            <h3></h3>
+            <hr>
+        </li>
+        <li>
+            <h3></h3>
+            <hr>
+        </li>
+        <li>
+            <h3></h3>
+            <hr>
+        </li>
+        <li>
+            <h3></h3>
+            <hr>
+        </li>
+        <li>
+            <h3></h3>
+            <hr>
+        </li>
+    </ol>
 
+    <script>
+        function changeBGColorofP() {
+            var para = document.getElementById("bgcolorchange");
+            var rand = Math.random()
+            var r = Math.floor(rand * 9999) % 256;
+            var g = Math.floor(rand * 3333) % 256;
+            var b = Math.floor(rand * 7777) % 256;
+            para.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        }
+    </script>
 </body>
 
 </html>
