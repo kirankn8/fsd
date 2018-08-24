@@ -1,0 +1,13 @@
+<h1>Update Employee</h1>
+
+<label for="name">Name</label>
+<input type="text" id="name" [(ngModel)]="employee.name" [value]="employee.name">
+
+<label for="age">Age</label>
+<input type="text" id="age" [(ngModel)]="employee.age" [value]="employee.name">
+
+<label for="email">Email</label>
+<input type="text" id="email" [(ngModel)]="employee.email" [value]="employee.name">
+
+<button type="button" class="btn btn-primary" (click)="onUpdate()">UPDATE</button>
+<button type="button" class="btn btn-light" (click)="onCancel()">CANCEL</button>
