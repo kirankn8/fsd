@@ -11,10 +11,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { EmployeeService } from './services/employee.service';
 
 const routes: Routes = [
-  { path: 'employees/new', component: AddEmployeeComponent },
+  { path: 'employees/new', component: AddEmployeeComponent, pathMatch: 'full' },
   { path: 'employees/:id', component: UpdateEmployeeComponent },
-  { path: 'employees', component: ListEmployeeComponent },
-  { path: '**', redirectTo: '/employees', pathMatch: 'full' },
+  { path: 'employees', component: ListEmployeeComponent, pathMatch: 'full' },
+  { path: '', redirectTo: '/employees', pathMatch: 'full' },
 ];
 
 @NgModule({

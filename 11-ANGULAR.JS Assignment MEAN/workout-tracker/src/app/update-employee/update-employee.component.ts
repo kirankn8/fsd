@@ -34,4 +34,8 @@ export class UpdateEmployeeComponent implements OnInit {
   onCancel() {
     this.location.back();
   }
+
+  validateForm(): boolean {
+    return !(this.employee.name.trim() !== '' && +this.employee.age >= 1 && /^.+@.+\..+$/.test(this.employee.email.trim()));
+  }
 }
