@@ -97,11 +97,38 @@
         <li>
             <h4>Write a JavaScript function that accept row, column, (to identify a particular cell) and a string to
                 update the content of that cell.</h4>
+            <table id="idtble" border="1">
+                <tr>
+                    <td>A</td>
+                    <td>B</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>D</td>
+                    <td>E</td>
+                    <td>F</td>
+                </tr>
+                <tr>
+                    <td>G</td>
+                    <td>H</td>
+                    <td>I</td>
+                </tr>
+            </table>
+
+            <input id="idtble_row" type="number" placeholder="Enter row number">
+            <input id="idtble_col" type="number" placeholder="Enter col number">
+            <input id="idtble_str" type="text" placeholder="Enter a string">
+            <button onclick="accesstble()">Change</button>
+            <div id="idtbleerr"></div>
             <hr>
         </li>
         <li>
             <h4>Write a JavaScript function that creates a table, accept row, column numbers from the user, and input
                 row-column number as content (e.g. Row-0 Column-0) of a cell.</h4>
+            <div id="dynamictble"></div>
+            <input id="dy_row" type="number" placeholder="Enter number of rows">
+            <input id="dy_col" type="number" placeholder="Enter number of columns">
+            <button onclick="dytable()">Generate Table</button>
             <hr>
         </li>
         <li>
@@ -160,6 +187,49 @@
                             <td>&nbsp;</td >\
                             <td>&nbsp;</td>"
             tbl.lastChild.appendChild(tr);
+        }
+
+        function identifyCell(row, col, str) {
+            var idtble = document.getElementById("idtble");
+            if (str && row < idtble.rows.length && col < idtble.rows[row].cells.length && row >= 0 && col >= 0) {
+                idtble.rows[row].cells[col].innerText = str;
+                document.getElementById("idtbleerr").innerText = "";
+            }
+            else {
+                document.getElementById("idtbleerr").innerText = "Invalid input";
+            }
+        }
+
+        function accesstble() {
+            var row = +document.getElementById("idtble_row").value,
+                col = +document.getElementById("idtble_col").value,
+                str = document.getElementById("idtble_str").value;
+            if (isNaN(row) || isNaN(col)) {
+                document.getElementById("idtbleerr").innerText = "Invalid input";
+            } else {
+                document.getElementById("idtbleerr").innerText = "";
+                identifyCell(row, col, str);
+            }
+        }
+
+        function dynamicTable(row, col) {
+            var tbl = document.createElement('table');
+            tbl.setAttribute("border", "1");
+            for (var i = 0; i < row; i++) {
+                var tbl_tr = tbl.appendChild(document.createElement('tr'));
+                for (var j = 0; j < col; j++) {
+                    var tbl_tr_td = tbl_tr.appendChild(document.createElement('td'));
+                    tbl_tr_td.innerHTML = `Row-${i} Column-${j}`
+                }
+            }
+            document.getElementById("dynamictble").appendChild(tbl);
+        }
+
+        function dytable() {
+            var row = +document.getElementById("dy_row").value;
+            var col = +document.getElementById("dy_col").value;
+            if (row > 0 && col >= 0)
+                dynamicTable(row, col)
         }
 
         function rmvdrplist() {
