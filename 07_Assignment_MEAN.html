@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>07-Assignment MEAN</title>
     <style>
-        #bgcolorchange {
-            padding: 2em;
+        .para {
+            padding: 1em;
         }
     </style>
 </head>
@@ -17,45 +17,121 @@
     <h1>07-Assignment MEAN</h1>
     <ol>
         <li>
-            <h3></h3>
-            <hr>
-        </li>
-        <li>
-            <h3></h3>
-            <hr>
-        </li>
-        <li>
-            <h3>Write a JavaScript program to set the background color of a paragraph</h3>
-            <p id="bgcolorchange">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit soluta quos sapiente ipsa minima quod praesentium aut in nemo
-                optio? Necessitatibus illum distinctio consequuntur totam! Consectetur cupiditate pariatur repudiandae soluta!
+            <h4>
+                Here is a sample html file with a submit button. Now modify the style of the paragraph text through
+                javascript
+                code.Clicking on the button the font, font size, and color of the paragraph text will be changed.
+            </h4>
+            <p id="stylechange" class="para">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit soluta quos sapiente ipsa minima quod
+                praesentium
+                aut in nemo
+                optio? Necessitatibus illum distinctio consequuntur totam! Consectetur cupiditate pariatur repudiandae
+                soluta!
             </p>
-            <button onclick="changeBGColorofP()">Change above paragraph's background color</button>
+            <button onclick="changeStyle()">Change paragraph style</button>
             <hr>
         </li>
         <li>
-            <h3></h3>
+            <h4>Write a JavaScript function to get the values of First and Last name of the following form</h4>
+            <form method="POST">
+                <div style="display: inline-block;">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name">
+                </div>
+                <br>
+                <div style="display: inline-block;">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name">
+                </div>
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+            <div>-----------------------------------</div>
+            <button onclick="getfl()">Get First Name & Last Name</button>
+            <div id="fl"></div>
             <hr>
         </li>
         <li>
-            <h3></h3>
+            <h4>Write a JavaScript program to set the background color of a paragraph</h4>
+            <p id="bgcolorchange" class="para">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit soluta quos sapiente ipsa minima quod
+                praesentium aut in nemo
+                optio? Necessitatibus illum distinctio consequuntur totam! Consectetur cupiditate pariatur repudiandae
+                soluta!
+            </p>
+            <button onclick="changeBGColorofP()">Change paragraph's background color</button>
             <hr>
         </li>
         <li>
-            <h3></h3>
+            <h4>
+                Here is a sample html file with a submit button. Write a JavaScript function to get the value of the
+                href, hreflang,
+                rel, target, and type attributes of the specified link
+            </h4>
+            <a id="link_to_google" href="https://www.google.com/" hreflang="en-us" type="text/html" rel="nofollow"
+                target="_blank">Google</a>
+            <br>
+            <button onclick="getAnchorAttributes()">Click here to get attributes value</button>
+            <div id="anchrattr"></div>
             <hr>
         </li>
         <li>
-            <h3></h3>
+            <h4>Write a JavaScript function to add rows to a table</h4>
+            <table border="1" id="tbl">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+            <br>
+            <button onclick="addrow()">Add row</button>
             <hr>
         </li>
         <li>
-            <h3></h3>
+            <h4>Write a JavaScript function that accept row, column, (to identify a particular cell) and a string to
+                update the content of that cell.</h4>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript function that creates a table, accept row, column numbers from the user, and input
+                row-column number as content (e.g. Row-0 Column-0) of a cell.</h4>
+            <hr>
+        </li>
+        <li>
+            <h4>Write a JavaScript program to remove items from a dropdown list</h4>
+            <select id="drplist">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </select>
+            <button onclick="rmvdrplist()">Remove items from dropdown</button>
             <hr>
         </li>
     </ol>
 
     <script>
+        function changeStyle() {
+            var para = document.getElementById("stylechange");
+            para.style.fontFamily = 'Comic Sans MS';
+            para.style.color = 'Green';
+            para.style.fontSize = 20;
+
+        }
+
+        function getfl() {
+            var f = document.getElementById("first-name").value;
+            var l = document.getElementById("last-name").value;
+            document.getElementById("fl").innerText = `First-Name: ${f}, Last-Name: ${l}`;
+        }
+
         function changeBGColorofP() {
             var para = document.getElementById("bgcolorchange");
             var rand = Math.random()
@@ -63,6 +139,32 @@
             var g = Math.floor(rand * 3333) % 256;
             var b = Math.floor(rand * 7777) % 256;
             para.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        }
+
+        function getAnchorAttributes() {
+            var gle = document.getElementById("link_to_google");
+            var anchrattr = document.getElementById("anchrattr");
+            anchrattr.innerText = `
+                 href: ${gle.href}, 
+                 hreflang: ${gle.hreflang}, 
+                 rel: ${gle.rel}, 
+                 target: ${gle.target}, 
+                 type: ${gle.type} 
+            `;
+        }
+
+        function addrow() {
+            var tbl = document.getElementById("tbl");
+            var tr = document.createElement("tr");
+            tr.innerHTML = "<td>&nbsp;</td>\
+                            <td>&nbsp;</td >\
+                            <td>&nbsp;</td>"
+            tbl.lastChild.appendChild(tr);
+        }
+
+        function rmvdrplist() {
+            var drplist = document.getElementById("drplist");
+            drplist.remove(drplist.selectedIndex);
         }
     </script>
 </body>
