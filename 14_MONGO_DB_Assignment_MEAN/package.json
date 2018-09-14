@@ -1,0 +1,14 @@
+{
+  "name": "14_mongo_db_assignment_mean",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.2.14"
+  }
+}
