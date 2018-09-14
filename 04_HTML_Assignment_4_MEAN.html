@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04 - HTML Assignment 4 MEAN</title>
+    <style>
+        .heading {
+            color: #008000;
+            width: fit-content;
+            margin: auto;
+            margin-top: 1em;
+        }
+
+        .sub-heading {
+            width: fit-content;
+            margin: auto;
+            margin-bottom: 5em;
+        }
+
+        #drag-n-drop {
+            margin: auto;
+            width: fit-content;
+        }
+
+        #dustbin {
+            display: inline-block;
+            height: 300px;
+            width: 300px;
+        }
+
+        #dustbin img {
+            height: 90%;
+            width: 90%;
+        }
+
+        .drag-list {
+            list-style: none;
+            display: inline-block;
+            margin-left: 6em;
+        }
+
+        .drag-list li {
+            background-color: #2abd48;
+            height: 2.5em;
+            width: 8em;
+            margin-bottom: 10px;
+            padding-left: 5px;
+            padding-top: 4px;
+        }
+
+        .sub-heading,
+        li {
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="heading">HTML5 Drag and drop</h1>
+    <div class="sub-heading">Drag list of items on dust bin</div>
+    <div id="drag-n-drop">
+        <div id="dustbin">
+            <img ondragover="allowDrop(event)" src="https://ibin.co/4FdN4vwclPPQ.jpg" alt="Dustbin_Image" ondrop="drop(event)">
+        </div>
+        <ul class="drag-list">
+            <li id="music" draggable="true" ondragstart="drag(event)">Music</li>
+            <li id="docs" draggable="true" ondragstart="drag(event)">Docs</li>
+            <li id="videos" draggable="true" ondragstart="drag(event)">Videos</li>
+            <li id="images" draggable="true" ondragstart="drag(event)">Images</li>
+            <li id="others" draggable="true" ondragstart="drag(event)">Others</li>
+        </ul>
+    </div>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+            ev.target.removeChild(document.getElementById(data));
+        }
+    </script>
+</body>
+
+</html>
