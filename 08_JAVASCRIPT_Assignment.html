@@ -13,7 +13,8 @@
     <h1>Solutions to 08-JAVASCRIPT Assignment</h1>
     <ol>
         <li>
-            <h4>Write a JavaScript program to display the current day and time in the following format. Sample Output :Today
+            <h4>Write a JavaScript program to display the current day and time in the following format. Sample Output
+                :Today
                 is : Friday.Current time is : 4 PM : 50 : 22</h4>
             <div id="today_date"></div>
             <div id="current_time"></div>
@@ -25,7 +26,8 @@
             <hr>
         </li>
         <li>
-            <h4>Write a JavaScript program to get the current date. Expected Output:mm-dd-yyyy, mm/dd/yyyy or dd-mm-yyyy, dd/mm/yyyy</h4>
+            <h4>Write a JavaScript program to get the current date. Expected Output:mm-dd-yyyy, mm/dd/yyyy or
+                dd-mm-yyyy, dd/mm/yyyy</h4>
             <div>Current Date</div>
             <ul>
                 <li id="date1"></li>
@@ -36,8 +38,10 @@
             <hr>
         </li>
         <li>
-            <h4>Write a JavaScript program where the program takes a random integer between 1 to 10, the user is then prompted
-                to input a guess number. If the user input matches with guess number, the program will display a message
+            <h4>Write a JavaScript program where the program takes a random integer between 1 to 10, the user is then
+                prompted
+                to input a guess number. If the user input matches with guess number, the program will display a
+                message
                 "Good Work" otherwise display a message "Not matched".</h4>
             <button onclick="guessNow()">Guess Me</button>
             <div id="guess_result"></div>
@@ -90,14 +94,16 @@
             <hr>
         </li>
         <li>
-            <h4>Write a JavaScript program to create a new string of 4 copies of the last 3 characters of a given original string
+            <h4>Write a JavaScript program to create a new string of 4 copies of the last 3 characters of a given
+                original string
             </h4>
             <input type="text" onkeyup="copylast3(this.value)"> &#8594; Output:
             <span id="last3copies">_______</span>
             <hr>
         </li>
         <li>
-            <h4>Write a JavaScript program to swap the first and last elements of a given array of integers. The array length
+            <h4>Write a JavaScript program to swap the first and last elements of a given array of integers. The array
+                length
                 should be at least 1</h4>
             <div>
                 <label for="number_collector">Enter numbers here</label>
@@ -117,7 +123,8 @@
             <hr>
         </li>
         <li>
-            <h4>Write a JavaScript function that returns a passed string with letters in alphabetical order. Using built in functions</h4>
+            <h4>Write a JavaScript function that returns a passed string with letters in alphabetical order. Using
+                built in functions</h4>
             <input type="text" onkeyup="arrangeAlpha(this.value)">&#8594; Output:
             <span id="alphaorder">_______</span>
             <hr>
@@ -125,7 +132,8 @@
         <li>
             <ul>
                 <li>
-                    <h4>Write a JavaScript function that accepts a string as a parameter and find the longest word within the
+                    <h4>Write a JavaScript function that accepts a string as a parameter and find the longest word
+                        within the
                         string.Using builtin functions.
                     </h4>
                     <input type="text" onkeyup="findLongestString(this.value)"> &#8594; Output:
@@ -137,7 +145,8 @@
                     <span id="uniquestring">_______</span>
                 </li>
                 <li>
-                    <h4>Write a JavaScript function to get the number of occurrences of each letter in specified string.</h4>
+                    <h4>Write a JavaScript function to get the number of occurrences of each letter in specified
+                        string.</h4>
                     <input type="text" onkeyup="getOccurenceString(this.value)"> &#8594; Output:
                     <span id="occurences">_______</span>
                 </li>
@@ -169,7 +178,6 @@
             var ampm = get_hour < 12 ? 'AM' : 'PM';
             var hour_12hrformat = get_hour <= 12 ? get_hour : get_hour - 12;
             var day_of_week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-            // var date = `Today is: ${day_of_week[whatisnow.getDay()]} ${whatisnow.getDate()}/${whatisnow.getMonth() + 1}/${whatisnow.getFullYear()}`;
             var date = `Today is: ${day_of_week[whatisnow.getDay()]}`;
             var time = `Current time is: ${get_hour} ${ampm} : ${whatisnow.getMinutes()}: ${whatisnow.getSeconds()}`;
 
