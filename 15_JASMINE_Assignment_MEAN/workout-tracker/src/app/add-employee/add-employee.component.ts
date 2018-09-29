@@ -20,8 +20,7 @@ export class AddEmployeeComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   onSave() {
     this.employeeService.addEmployee(this.employee);

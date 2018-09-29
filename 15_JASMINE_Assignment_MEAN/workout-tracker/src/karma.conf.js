@@ -8,6 +8,9 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-firefox-launcher'),
+      require('karma-edge-launcher'),
+      require('karma-ie-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
@@ -25,7 +28,15 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false
+    browsers: [
+      'Chrome',
+      // 'Firefox',
+      // 'Edge',
+      // 'IE'
+    ],
+    singleRun: false,
+    files: [
+      '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+    ]
   });
 };

@@ -24,4 +24,18 @@ describe('ListEmployeeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contain \"Employees\" heading', async(() => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('#emp-heading').textContent).toContain('Employees: ');
+  }));
+
+  // it('initially show no employees added message', async(() => {
+  //   fixture.detectChanges();
+  //   const compiled = fixture.debugElement.nativeElement;
+  //   expect(compiled.querySelector('#no-employees-msg').textContent)
+  //     .toContain('No Employees to display. Go ahead and add some employees !!!');
+  // }));
+
 });

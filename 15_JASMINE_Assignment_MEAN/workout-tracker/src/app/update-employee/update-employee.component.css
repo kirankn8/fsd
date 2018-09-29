@@ -28,3 +28,7 @@
 .btn-txt-blue {
     color: #0c7cd5;
 }
+
+input {
+    outline: none;
+}

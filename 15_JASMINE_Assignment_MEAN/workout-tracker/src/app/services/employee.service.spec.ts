@@ -27,32 +27,32 @@ describe('EmployeeService', () => {
     expect(employeeService).toBeTruthy();
   });
 
-  it('Initial value of LocalStorage', () => {
+  it('initial value of LocalStorage', () => {
     employeeService.employees = null;
     employeeService.setEmployeesToLS();
     expect(employeeService.getEmployeesFromLS()).toBe(null);
   });
 
-  it('Set value of LocalStorage', () => {
+  it('set value of LocalStorage', () => {
     employeeService.setEmployeesToLS();
     expect(employeeService.getEmployeesFromLS().length).toBe(0);
   });
 
-  it('Add values to LocalStorage', () => {
+  it('add values to LocalStorage', () => {
     employeeService.addEmployee(employee0);
     employeeService.addEmployee(employee1);
     employeeService.setEmployeesToLS();
     expect(employeeService.getEmployeesFromLS().length).toBe(2);
   });
 
-  it('Update value0 in LocalStorage', () => {
+  it('update value0 in LocalStorage', () => {
     employee0.name = 'ModifiedDummyName1';
     employeeService.updateEmployee(0, employee0);
     employeeService.setEmployeesToLS();
     expect(employeeService.getEmployeesFromLS()[0].name).toBe('ModifiedDummyName1');
   });
 
-  it('Update value1 in LocalStorage', () => {
+  it('update value1 in LocalStorage', () => {
     employee1.name = 'ModifiedDummyName2';
     employee1.age = 24;
     employeeService.updateEmployee(1, employee1);
