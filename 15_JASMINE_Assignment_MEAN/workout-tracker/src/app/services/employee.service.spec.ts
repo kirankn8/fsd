@@ -8,12 +8,12 @@ describe('EmployeeService', () => {
   const employee0: Employee = {
     name: 'DummyName1',
     age: 50,
-    email: 'dummyname1@dymmyemail.com',
+    email: 'dummyname1@dummyemail.com',
   };
   const employee1: Employee = {
     name: 'DummyName2',
     age: 25,
-    email: 'dummyname2@dymmyemail.com',
+    email: 'dummyname2@dummyemail.com',
   };
 
   beforeEach(() => {

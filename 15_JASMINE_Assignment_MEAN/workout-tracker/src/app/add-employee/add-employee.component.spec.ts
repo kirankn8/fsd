@@ -79,7 +79,7 @@ describe('AddEmployeeComponent', () => {
     expect(compiled.querySelectorAll('#new-emp-form > button')[1].textContent).toEqual('CANCEL');
   }));
 
-  it('check employee form with sample input', async(() => {
+  it('check new employee form with sample input', async(() => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     const form = {
