@@ -9,6 +9,7 @@ const session = require("express-session");
 const app = express();
 
 // DB configuration
+// TODO: Change to MySQL
 mongoose.connect(config.db_url);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
