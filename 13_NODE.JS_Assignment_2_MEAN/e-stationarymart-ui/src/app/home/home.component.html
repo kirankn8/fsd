@@ -1,0 +1,23 @@
+<div class="container">
+  <br>
+  <h3>Stationary Items:</h3>
+  <br>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let item of products">
+      <div class="card">
+        <img class="card-img-top" [src]="item.img" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <p class="card-text">Price: {{item.price}}</p>
+          <p class="card-text">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere eligendi quam quod facilis, rem iure...
+          </p>
+          <a href="#" class="btn btn-primary">+1 to Cart</a>
+          &nbsp;
+          <a href="#" class="btn btn-secondary">Checkout</a>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
