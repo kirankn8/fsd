@@ -10,3 +10,7 @@ exports.all_products = function (req, res) {
         { name: 'H', img: 'https://placehold.it/286x180', description: '', price: 23 },
     ]);
 }
+
+exports.product_by_id = function (req, res) {
+    res.json({ name: 'A', img: 'https://placehold.it/286x180', description: '', price: 23 });
+}

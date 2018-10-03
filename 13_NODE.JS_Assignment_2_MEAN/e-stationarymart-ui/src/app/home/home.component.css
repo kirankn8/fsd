@@ -1,0 +1,13 @@
+.card-link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.btn {
+    color: white;
+}
+
+.card:hover {
+    border-color: #2196f3;
+    border-width: thin;
+}

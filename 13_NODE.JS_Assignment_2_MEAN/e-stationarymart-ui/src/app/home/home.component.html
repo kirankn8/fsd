@@ -1,9 +1,9 @@
-<div class="container">
-  <br>
-  <h3>Stationary Items:</h3>
-  <br>
-  <div class="row">
-    <div class="col-md-3" *ngFor="let item of products">
+<br>
+<h3>Stationary Items:</h3>
+<br>
+<div class="row">
+  <div class="col-md-3" *ngFor="let item of products">
+    <a class="card-link" routerLink="/product/1">
       <div class="card">
         <img class="card-img-top" [src]="item.img" alt="Card image cap">
         <div class="card-body">
@@ -17,7 +17,7 @@
           <a href="#" class="btn btn-secondary">Checkout</a>
         </div>
       </div>
-      <br>
-    </div>
+    </a>
+    <br>
   </div>
 </div>

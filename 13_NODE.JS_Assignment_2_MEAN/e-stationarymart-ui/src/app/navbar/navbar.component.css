@@ -27,3 +27,7 @@
 .navbar-text {
     color: white;
 }
+
+#logout {
+    margin-left:1em;
+}
