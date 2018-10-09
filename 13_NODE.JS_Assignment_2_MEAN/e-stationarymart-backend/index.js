@@ -2,21 +2,32 @@ const express = require('express');
 const routes = require('./api/routes');
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const mongoose = require('mongoose');
+const mysql = require('mysql');
 const config = require('./config');
-const session = require("express-session");
+const session = require('express-session');
+const generate_schema = require('./api/models/schema');
 
 const app = express();
 
-// DB configuration
-// TODO: Change to MySQL
-mongoose.connect(config.db_url);
-mongoose.Promise = global.Promise;
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    console.log('DB connection succesfully established')
+const my_credentials = {
+    host: "localhost",
+    user: "username",
+    password: "password",
+    database: "eMart"
+}
+
+var connection = mysql.createConnection({
+    host: my_credentials.host,
+    user: my_credentials.user,
+    password: my_credentials.password
 });
+
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
+
+generate_schema(connection, my_credentials);
 
 //  Middlewares
 app.use(session({ secret: "cats" }));

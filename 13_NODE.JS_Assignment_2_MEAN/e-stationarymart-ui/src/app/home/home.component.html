@@ -3,21 +3,24 @@
 <br>
 <div class="row">
   <div class="col-md-3" *ngFor="let item of products">
-    <a class="card-link" routerLink="/product/1">
-      <div class="card">
-        <img class="card-img-top" [src]="item.img" alt="Card image cap">
-        <div class="card-body">
+    <div class="card">
+      <a class="card-link" [routerLink]="'/product/'+item.id">
+        <img class="card-img-top" [src]="item.image" alt="Card image cap" width="286" height="180">
+      </a>
+      <div class="card-body">
+        <a class="card-link" [routerLink]="'/product/'+item.id">
           <h5 class="card-title">{{item.name}}</h5>
-          <p class="card-text">Price: {{item.price}}</p>
-          <p class="card-text">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere eligendi quam quod facilis, rem iure...
+          <p class="card-text">Price: {{item.price | currency:'INR'}}</p>
+          <p class="card-text item-description">
+            {{ (item.description.length>6)? (item.description | slice:0:100)+'..':(item.description) }}
           </p>
-          <a href="#" class="btn btn-primary">+1 to Cart</a>
-          &nbsp;
-          <a href="#" class="btn btn-secondary">Checkout</a>
-        </div>
+        </a>
+        <br>
+        <a class="btn btn-primary" (click)="addToCart(1, item)">+1 to Cart</a>
+        &nbsp;
+        <a class="btn btn-secondary">Checkout</a>
       </div>
-    </a>
+    </div>
     <br>
   </div>
 </div>

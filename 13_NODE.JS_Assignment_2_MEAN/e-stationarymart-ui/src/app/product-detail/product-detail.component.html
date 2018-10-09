@@ -1,25 +1,25 @@
 <br>
 <div class="row">
   <div class="col-md-3">
-    <img class="card-img-top" [src]="item.img" alt="Card image cap">
+    <img class="card-img-top" [src]="item.image" alt="Card image cap" height="240">
   </div>
   <div class="col-md-9">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{{item.name}}</h5>
-        <p class="card-text">Price: {{item.price}}</p>
+        <p class="card-text">Price: {{item.price | currency:'INR'}}</p>
         <p class="card-text">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere eligendi quam quod facilis, rem iure...
+          {{item.description}}
         </p>
 
         <div>
           <label for="qty">Quantity: </label>&nbsp;
-          <input id="qty" type="number" min="1" max="10" value="1">
+          <input id="qty" #qty type="number" min="1" max="10" value="1">
         </div>
 
-        <a href="#" class="btn btn-primary">Add-to-cart</a>
+        <a class="btn btn-primary" (click)="addToCart(qty.value)">Add-to-cart</a>
         &nbsp;
-        <a href="#" class="btn btn-secondary">Checkout</a>
+        <a class="btn btn-secondary">Checkout</a>
       </div>
     </div>
   </div>

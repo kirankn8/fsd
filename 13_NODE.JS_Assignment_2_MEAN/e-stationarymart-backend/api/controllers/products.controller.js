@@ -1,16 +1,29 @@
+const mysql = require('mysql');
+
+const my_credentials = {
+    host: "localhost",
+    user: "username",
+    password: "password",
+    database: "eMart"
+}
+
+const connection = mysql.createConnection({
+    host: my_credentials.host,
+    user: my_credentials.user,
+    password: my_credentials.password,
+    database: my_credentials.database
+});
+
 exports.all_products = function (req, res) {
-    res.json([
-        { name: 'A', img: 'https://placehold.it/286x180', description: '', price: 23 },
-        { name: 'B', img: 'https://placehold.it/286x180', description: '', price: 23 },
-        { name: 'C', img: 'https://placehold.it/286x180', description: '', price: 23 },
-        { name: 'D', img: 'https://placehold.it/286x180', description: '', price: 23 },
-        { name: 'E', img: 'https://placehold.it/286x180', description: '', price: 23 },
-        { name: 'F', img: 'https://placehold.it/286x180', description: '', price: 23 },
-        { name: 'G', img: 'https://placehold.it/286x180', description: '', price: 23 },
-        { name: 'H', img: 'https://placehold.it/286x180', description: '', price: 23 },
-    ]);
+    connection.query("SELECT * FROM product", function (err, result, fields) {
+        if (err) throw err;
+        res.json(result);
+    });
 }
 
 exports.product_by_id = function (req, res) {
-    res.json({ name: 'A', img: 'https://placehold.it/286x180', description: '', price: 23 });
+    connection.query(`SELECT * FROM product where id=${req.params.id} LIMIT 1`, function (err, result, fields) {
+        if (err) throw err;
+        res.json(result[0]);
+    });
 }

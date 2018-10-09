@@ -8,6 +8,7 @@ export class ProductDetailResolver implements Resolve<any> {
     constructor(private productService: ProductService) { }
 
     resolve(route: ActivatedRouteSnapshot) {
+        console.log(route.paramMap.get('id'));
         return this.productService.getProductById(route.paramMap.get('id'));
     }
 }

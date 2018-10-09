@@ -4,10 +4,15 @@
 }
 
 .btn {
-    color: white;
+    color: white !important;
 }
 
 .card:hover {
     border-color: #2196f3;
     border-width: thin;
+}
+
+
+.item-description {
+    height: 6em;
 }
