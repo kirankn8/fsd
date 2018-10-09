@@ -15,13 +15,13 @@ export class CartService {
     this.messageSource.next(this.cartItemsLength);
   }
 
-  private get cart(): any {
+  get cart(): any {
     const temp = this.cookieService.get('Cart') || '{}';
     this._cart = JSON.parse(temp);
     return this._cart;
   }
 
-  private set cart(theCart: any) {
+  set cart(theCart: any) {
     this._cart = theCart;
     this.cookieService.set('Cart', JSON.stringify(this._cart));
   }
@@ -55,5 +55,13 @@ export class CartService {
 
   clearCart() {
     this.cart = {};
+  }
+
+  calcTotalPrice(): number {
+    let totalPrice = 0;
+    for (const cartItem of Object.keys(this.cart)) {
+      totalPrice += this.cart[cartItem].item.price * this.cart[cartItem].qty;
+    }
+    return totalPrice;
   }
 }

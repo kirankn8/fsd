@@ -18,6 +18,7 @@ import { CookieService } from 'ngx-cookie-service';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'product/:id', component: ProductDetailComponent, resolve: { item: ProductDetailResolver } },
+  { path: 'cart', component: CartComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 

@@ -31,6 +31,6 @@ app.use(cors())
 // Routes
 app.use('/', routes);
 
-app.listen(config.port, () => {
-    console.log('E-Stationary Mart Backend is listening on port: ' + config.port)
+app.listen(config.serverport, () => {
+    console.log('E-Stationary Mart Backend is listening on port: ' + config.serverport)
 });
