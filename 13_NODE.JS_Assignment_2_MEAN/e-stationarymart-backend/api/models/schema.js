@@ -1,5 +1,5 @@
 //  create tables
-const populatedb = require('./populatedb');
+const populatedb = require('../../populatedb');
 
 var schema = function (connection, my_credentials) {
 

@@ -9,17 +9,10 @@ const generate_schema = require('./api/models/schema');
 
 const app = express();
 
-const my_credentials = {
-    host: "localhost",
-    user: "username",
-    password: "password",
-    database: "eMart"
-}
-
 var connection = mysql.createConnection({
-    host: my_credentials.host,
-    user: my_credentials.user,
-    password: my_credentials.password
+    host: config.host,
+    user: config.user,
+    password: config.password
 });
 
 connection.connect(function (err) {
@@ -27,7 +20,7 @@ connection.connect(function (err) {
     console.log("Connected!");
 });
 
-generate_schema(connection, my_credentials);
+generate_schema(connection, config);
 
 //  Middlewares
 app.use(session({ secret: "cats" }));

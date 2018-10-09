@@ -1,17 +1,11 @@
 const mysql = require('mysql');
-
-const my_credentials = {
-    host: "localhost",
-    user: "username",
-    password: "password",
-    database: "eMart"
-}
+const config = require('../../config');
 
 const connection = mysql.createConnection({
-    host: my_credentials.host,
-    user: my_credentials.user,
-    password: my_credentials.password,
-    database: my_credentials.database
+    host: config.host,
+    user: config.user,
+    password: config.password,
+    database: config.database
 });
 
 exports.all_products = function (req, res) {
