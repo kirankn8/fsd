@@ -1,3 +1,11 @@
-<p>
-  history works!
-</p>
+<h5>History</h5>
+<br>
+<ol>
+  <li *ngFor="let order of orderHistory">
+    Price: {{order.total_price}}
+    <br>
+    Placed On: {{order.date_time| date:'short'}}
+    <br>
+    <!-- {{this.orderCart.get(order.id, null) | json}} -->
+  </li>
+</ol>

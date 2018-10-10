@@ -42,8 +42,11 @@ var schema = function (connection, my_credentials) {
 
     createTable = "CREATE TABLE IF NOT EXISTS PurchaseOrder (               \
                             id int NOT NULL AUTO_INCREMENT,                 \
-                            total FLOAT,                                    \
+                            total_price FLOAT,                              \
+                            userid int,                            \
+                            status VARCHAR(255),                                    \
                             date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  \
+                            FOREIGN KEY (userid) REFERENCES User(id),       \
                             PRIMARY KEY (id))";
     connection.query(createTable, function (err, result) {
         if (err) throw err;
@@ -54,6 +57,7 @@ var schema = function (connection, my_credentials) {
         "CREATE TABLE IF NOT EXISTS Cart (                                  \
                             productid  int NOT NULL,                        \
                             orderid int NOT NULL,                           \
+                            qty int NOT NULL,                               \
                             PRIMARY KEY(productid, orderid),                \
                             FOREIGN KEY(productid) REFERENCES Product(id),  \
                             FOREIGN KEY(orderid) REFERENCES PurchaseOrder(id))";

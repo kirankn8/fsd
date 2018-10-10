@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
+import { OrderService } from '../services/order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +13,10 @@ export class HomeComponent implements OnInit {
 
   products: any;
 
-  constructor(private productService: ProductService, private cartService: CartService) { }
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getAllProducts();
@@ -27,4 +32,8 @@ export class HomeComponent implements OnInit {
     this.cartService.addToCart({ item: item, qty: +qty });
   }
 
+  checkout(item: any) {
+    this.addToCart(1, item);
+    this.router.navigate(['/cart']);
+  }
 }

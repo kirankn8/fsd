@@ -14,11 +14,13 @@ import { CartComponent } from './cart/cart.component';
 import { HistoryComponent } from './history/history.component';
 import { CartService } from './services/cart.service';
 import { CookieService } from 'ngx-cookie-service';
+import { OrderService } from './services/order.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'product/:id', component: ProductDetailComponent, resolve: { item: ProductDetailResolver } },
   { path: 'cart', component: CartComponent },
+  { path: 'history', component: HistoryComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 
@@ -41,6 +43,7 @@ const routes: Routes = [
     CookieService,
     ProductService,
     CartService,
+    OrderService,
 
     // Resolvers
     ProductDetailResolver,

@@ -53,15 +53,16 @@ export class CartService {
     this.messageSource.next(this.cartItemsLength);
   }
 
-  clearCart() {
-    this.cart = {};
-  }
-
   calcTotalPrice(): number {
     let totalPrice = 0;
     for (const cartItem of Object.keys(this.cart)) {
       totalPrice += this.cart[cartItem].item.price * this.cart[cartItem].qty;
     }
     return totalPrice;
+  }
+
+  clearCart() {
+    this.cart = {};
+    this.messageSource.next(this.cartItemsLength);
   }
 }

@@ -16,7 +16,7 @@ exports.all_products = function (req, res) {
 }
 
 exports.product_by_id = function (req, res) {
-    connection.query(`SELECT * FROM product where id=${req.params.id} LIMIT 1`, function (err, result, fields) {
+    connection.query(`SELECT * FROM Product where id=${req.params.id} LIMIT 1`, function (err, result, fields) {
         if (err) throw err;
         res.json(result[0]);
     });

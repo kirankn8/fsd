@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +11,7 @@ export class CartComponent implements OnInit {
 
   cart = [];
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private orderService: OrderService) { }
 
   ngOnInit() { this.getCartItems(); }
 
@@ -34,6 +35,12 @@ export class CartComponent implements OnInit {
 
   calcTotalPrice(): number {
     return this.cartService.calcTotalPrice();
+  }
+
+  placeOrder() {
+    this.orderService.placeOrder().subscribe(data => {
+      this.cartService.clearCart();
+    });
   }
 
 }
