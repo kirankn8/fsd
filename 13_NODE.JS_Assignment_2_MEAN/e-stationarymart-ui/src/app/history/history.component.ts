@@ -42,7 +42,6 @@ export class HistoryComponent implements OnInit {
 
   cancelOrder(id) {
     this.orderService.cancelOrder(id).subscribe(data => {
-      console.log(data);
       this.getHistory();
     });
   }
