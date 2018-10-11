@@ -15,7 +15,9 @@ router.get('/api/orders/', order.all_orders);
 
 router.get('/api/order/:orderid', order.cart_items);
 
-router.post('/api/order/', order.place_orders);
+router.post('/api/order/', order.place_order);
+
+router.post('/api/order/cancel/', order.cancel_order);
 
 router.post('/api/user/', user.user_by_username);
 

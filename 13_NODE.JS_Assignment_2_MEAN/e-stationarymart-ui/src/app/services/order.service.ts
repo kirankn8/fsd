@@ -25,6 +25,10 @@ export class OrderService {
   }
 
   orderCart(id) {
-    return this.http.get('http://localhost:3000/api/orders/' + id);
+    return this.http.get('http://localhost:3000/api/order/' + id);
+  }
+
+  cancelOrder(id) {
+    return this.http.post(`http://localhost:3000/api/order/cancel/`, { orderid: id });
   }
 }

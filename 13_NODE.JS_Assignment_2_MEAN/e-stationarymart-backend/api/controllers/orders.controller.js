@@ -8,7 +8,13 @@ const connection = mysql.createConnection({
     database: config.database
 });
 
+// auto Admin order approval interval
+var approval_interval = 1;
+
 exports.all_orders = function (req, res) {
+    connection.query(`UPDATE PurchaseOrder SET status = 'Approved' WHERE \`status\` IS NULL AND date_time < (NOW() - INTERVAL ${approval_interval} MINUTE)`, function (err, result, fields) {
+        if (err) throw err;
+    });
     connection.query("SELECT * FROM PurchaseOrder", function (err, result, fields) {
         if (err) throw err;
         res.json(result);
@@ -16,20 +22,18 @@ exports.all_orders = function (req, res) {
 }
 
 exports.cart_items = function (req, res) {
-    connection.query("SELECT Product.id, Product.name, Product.price FROM Product \
-                      JOIN Cart on Cart.productid = Product.id\
-                      JOIN PurchaseOrder on Cart.orderid = "+ req.params.orderid
+    connection.query("SELECT Product.id, Product.name, Product.price, Cart.qty FROM Product \
+                      JOIN Cart on Product.id = Cart.productid and Cart.orderid = "+ req.params.orderid
         , function (err, result, fields) {
             if (err) throw err;
             res.json(result);
         });
 }
 
-exports.place_orders = function (req, res) {
+exports.place_order = function (req, res) {
     connection.query(`INSERT INTO PurchaseOrder (total_price) VALUES ('${req.body.totalPrice}')`, function (err, poresult, fields) {
         if (err) throw err;
         var values = [];
-        console.log(req.body);
         for (var i = 0; i < req.body.cart.length; i++) {
             values.push([req.body.cart[i].id, poresult.insertId, req.body.cart[i].qty]);
         }
@@ -38,4 +42,12 @@ exports.place_orders = function (req, res) {
             res.json(cresult);
         });
     });
+}
+
+exports.cancel_order = function (req, res) {
+    connection.query(`UPDATE PurchaseOrder SET status = 'Cancelled' WHERE id = ${req.body.orderid}`
+        , function (err, result, fields) {
+            if (err) throw err;
+            res.json(result);
+        });
 }
