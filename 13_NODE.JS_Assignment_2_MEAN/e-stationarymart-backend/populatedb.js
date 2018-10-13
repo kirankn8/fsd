@@ -1,4 +1,4 @@
-module.exports = function (connection, my_credentials) {
+exports.product = function (connection) {
 
     const data = [
         {
@@ -36,3 +36,24 @@ module.exports = function (connection, my_credentials) {
         }
     });
 }
+
+exports.user = function (connection) {
+
+    const data = [
+        { username: 'alterego', password: 'alterego' },
+        { username: 'superego', password: 'superego' },
+    ];
+
+    connection.query('SELECT COUNT(*) as no_users FROM User', function (err, result) {
+        if (result[0].no_users < data.length) {
+            for (let i = 0; i < data.length; i++) {
+                var insertRecord = `INSERT INTO User (username, password) VALUES ('${data[i].username}', '${data[i].password}')`;
+                connection.query(insertRecord, function (err, result) {
+                    if (err) throw err;
+                });
+            }
+            console.log(data.length + " record(s) inserted");
+        }
+    });
+}
+

@@ -1,23 +1,26 @@
 <nav class="navbar navbar-expand-lg navbar-dark rm-padding bg-blue">
-  <a class="navbar-brand" routerLink="/">E-Stationary Mart</a>
+  <a class="navbar-brand" *ngIf="!authService.isLoggedIn" routerLink="/">E-Stationary Mart</a>
+  <a class="navbar-brand" *ngIf="authService.isLoggedIn" routerLink="/home">E-Stationary Mart</a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()"
+    *ngIf="authService.isLoggedIn">
+    <span class="navbar-toggler-icon" *ngIf="authService.isLoggedIn"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" id="navbarSupportedContent" *ngIf="authService.isLoggedIn">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/cart">
+        <a class="nav-link" routerLink="/cart" routerLinkActive="active">
           My Cart
           <span class="badge badge-light">{{cartItems}}</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/history">History</a>
+        <a class="nav-link" routerLink="/history" routerLinkActive="active">History</a>
       </li>
     </ul>
-    <span class="navbar-text"> Username </span>
-    <span class="navbar-text" id="logout"> Logout </span>
+    <span class="navbar-text">{{username}}</span>
+    <span class="navbar-text" id="logout" (click)="logout()">Logout</span>
   </div>
 </nav>

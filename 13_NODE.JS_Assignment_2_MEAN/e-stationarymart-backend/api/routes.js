@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 const product = require('./controllers/products.controller');
 const order = require('./controllers/orders.controller');
-const user = require('./controllers/users.controller');
+const auth = require('./controllers/auth.controller');
 
 router.get('/', (req, res) => res.send('The app is up and running!'));
 
@@ -19,6 +20,7 @@ router.post('/api/order/', order.place_order);
 
 router.post('/api/order/cancel/', order.cancel_order);
 
-router.post('/api/user/', user.user_by_username);
+router.post('/api/login/', passport.authenticate('local'), auth.login);
+
 
 module.exports = router

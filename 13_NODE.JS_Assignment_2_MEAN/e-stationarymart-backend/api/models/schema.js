@@ -27,7 +27,7 @@ var schema = function (connection, my_credentials) {
     connection.query(createTable, function (err, result) {
         if (err) throw err;
         console.log("Product table created");
-        populatedb(connection, my_credentials);
+        populatedb.product(connection);
     });
 
     createTable = "CREATE TABLE IF NOT EXISTS User (                        \
@@ -38,6 +38,7 @@ var schema = function (connection, my_credentials) {
     connection.query(createTable, function (err, result) {
         if (err) throw err;
         console.log("User Table created");
+        populatedb.user(connection);
     });
 
     createTable = "CREATE TABLE IF NOT EXISTS PurchaseOrder (               \

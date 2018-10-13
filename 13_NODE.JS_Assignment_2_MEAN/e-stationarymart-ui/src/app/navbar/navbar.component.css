@@ -31,3 +31,7 @@
 #logout {
     margin-left:1em;
 }
+
+.navbar-text {
+    cursor: pointer;
+}
