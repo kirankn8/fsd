@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserServiceService } from '../services/user-service.service';
 
 @Component({
   selector: 'app-new-user',
@@ -7,9 +8,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewUserComponent implements OnInit {
 
-  constructor() { }
+  firstName: string;
+  lastName: string;
+  email: string;
+  ssoId: string;
+  _id: any;
 
-  ngOnInit() {
+  successfullyRegistered: boolean;
+
+  constructor(private userService: UserServiceService) {
+    this.successfullyRegistered = false;
+    this.firstName = '';
+    this.lastName = '';
+    this.email = '';
+    this.ssoId = '';
+  }
+
+  ngOnInit() { }
+
+  onRegister() {
+    const userInfo = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      ssoId: this.ssoId,
+    };
+    this.userService.addNewUser(userInfo).subscribe(data => {
+      console.log(data);
+      this._id = data['_id'];
+      this.successfullyRegistered = true;
+      this.lastName = '';
+      this.email = '';
+      this.ssoId = '';
+    });
+  }
+
+  validateForm(): boolean {
+    return !(this.firstName.trim() !== ''
+      && this.lastName.trim() !== '' && this.ssoId.trim() !== '' && /^.+@.+\..+$/.test(this.email.trim()));
   }
 
 }

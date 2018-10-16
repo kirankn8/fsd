@@ -8,7 +8,9 @@ var userSchema = new Schema({
     ssoId: String,
     uploadedDocuments: [
         {
+            filename: String,
             documentPath: String,
+            mimetype: String,
             description: String,
         }
     ],

@@ -1,0 +1,17 @@
+.light-blue {
+    background-color: #f5f5f5;
+}
+
+.light-green {
+    background-color: #dff0d8;
+}
+
+.success-heading {
+    padding-top: 1em; 
+    padding-bottom: 1em;
+    padding-left: 1em;
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 2em;
+}

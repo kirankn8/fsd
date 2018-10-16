@@ -1,4 +1,17 @@
 const userSchema = require('../models/user.schema');
+var multer = require('multer');
+var DIR = './uploads/files/';
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, DIR)
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+
+var upload = multer({ storage: storage }).single('file');
+// var upload = multer({ dest: DIR, preservePath: true }).single('file');
 
 exports.list_users = function (req, res) {
     userSchema.find({}, function (err, docs) {
@@ -22,17 +35,21 @@ exports.save_user = function (req, res) {
 }
 
 exports.save_user_documents = function (req, res) {
-    userSchema.findById(req.params.id, function (err, user) {
-        if (err) res.json(err);
-        user.set({
-            uploadedDocuments: {
-                documentPath: 'String',
-                description: 'String',
-            }
-        });
-        user.save(function (err, updatedDocs) {
+    upload(req, res, function (err) {
+        if (err) return res.status(422).send("an Error occured: " + err);
+        userSchema.findById(req.params.id, function (err, user) {
             if (err) res.json(err);
-            res.send(updatedDocs);
+            console.log(req.file);
+            user.uploadedDocuments.push({
+                filename: req.file.originalname,
+                documentPath: req.file.path.replace(/\\/g, '/').replace(/uploads/g, ''),
+                mimetype: req.file.mimetype,
+                description: req.body.description,
+            });
+            user.save(function (err, updatedDocs) {
+                if (err) res.json(err);
+                res.send(updatedDocs);
+            });
         });
     });
 }

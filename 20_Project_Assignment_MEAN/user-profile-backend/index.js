@@ -11,6 +11,7 @@ const port = 3000
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static('uploads'))
 
 mongoose.connect('mongodb://localhost:27017/userProfile', { useNewUrlParser: true });
 mongoose.Promise = global.Promise;

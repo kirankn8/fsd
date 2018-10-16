@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10-JQUERY Assignment MEAN</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+    <h1>10-JQUERY Assignment MEAN</h1>
+    <ol>
+        <li>
+            <h4>How to detect a textbox's content has changed using jQuery?</h4>
+            <div>Soution: By observing input event instead of change event</div>
+            <div>
+                <label for="detect_inputchange">Detect Input Change:</label>
+                <input id="detect_inputchange" type="text">
+            </div>
+            <div id="inpchmsg"></div>
+            <hr>
+        </li>
+        <li>
+            <h4>Change button text using jQuery.</h4>
+            <button id="btntxt">Click me to change the text</button>
+            <hr>
+        </li>
+        <li>
+            <h4>Add 3 new options to a drop-down list using jQuery</h4>
+            <button id="drpdwn_btn">Click me to add 3 more options to dropdown!</button>
+            &rarr;
+            <select name="drpdwn" id="drpdwn">
+                <option value="1">Option 1</option>
+            </select>
+            <hr>
+        </li>
+        <li>
+            <h4>Set background-image using jQuery CSS property</h4>
+            <button id="chng_bg">Click me to change Background</button>
+            <hr>
+        </li>
+    </ol>
+
+
+    <script>
+        var changes_input = 0;
+        $('#inpchmsg').text(`${changes_input} change(s) detected`);
+        $('#detect_inputchange').on('input', () => {
+            changes_input++;
+            $('#inpchmsg').text(`${changes_input} change(s) detected`);
+        });
+
+        $('#btntxt').click(() => {
+            $('#btntxt').html('This is the changed text');
+        });
+
+        var option_list = 1;
+        $('#drpdwn_btn').click(() => {
+            var end_list = option_list + 3;
+            for (var i = option_list + 1; i <= end_list; i++) {
+                $('#drpdwn').append(`<option value="${i}">Option ${i}</option>`);
+            }
+            option_list += 3;
+        });
+
+        $('#chng_bg').click(() => {
+            var window_width = $(window).width();
+            var window_height = $(window).height();
+            $('body')
+                .css('background-image', `url("https://picsum.photos/${window_height}/${window_width}/?random")`)
+                .css('background-repeat', 'no-repeat')
+                .css('background-position', 'center')
+                .css('background-size', 'cover');
+            $('hr').css('display', 'none');
+        });
+    </script>
+</body>
+
+</html>

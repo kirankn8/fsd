@@ -1,43 +1,55 @@
-<div class="card">
-  <div class="card-body">
-    <div class="card">
-      <div class="card-body">
-        <h3>User Registration Form</h3>
+<ng-container *ngIf="!successfullyRegistered">
+  <div class="card">
+    <div class="card-body">
+      <div class="card">
+        <div class="card-body light-blue">
+          <h3>User Registration Form</h3>
+        </div>
       </div>
+
+      <br>
+
+      <form>
+        <div class="form-group row">
+          <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="firstName" id="firstname" name="firstname">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="lastname" class="col-sm-2 col-form-label">Last Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="lastName" id="lastname" name="lastname">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="ssoid" class="col-sm-2 col-form-label">SSO ID</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="ssoId" id="ssoid" name="ssoid">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="email" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" [(ngModel)]="email" id="email" name="email">
+          </div>
+        </div>
+        <div style="float:right">
+          <button class="btn btn-primary" (click)="onRegister()" [disabled]="validateForm()">Register</button>
+          or
+          <a routerLink="/">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="successfullyRegistered">
+  <div class="card">
+    <div class="card-body light-green success-heading">
+      User {{firstName}} registered successfully.
     </div>
 
-    <br>
-
-    <form>
-      <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">First Name</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="staticEmail">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Last Name</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="staticEmail">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">SSO ID</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="staticEmail">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="staticEmail">
-        </div>
-      </div>
-      <div style="float:right">
-        <button class="btn btn-primary">Register</button>
-        or
-        <a routerLink="/">Cancel</a>
-      </div>
-    </form>
   </div>
-</div>
+  <a style="float:left;padding-left: 2em;" [routerLink]="'/user/'+_id">Click here to upload/manage your documents</a>
+  <div style="float:right;padding-right: 2em;">Go to <a routerLink="/">user list</a></div>
+</ng-container>

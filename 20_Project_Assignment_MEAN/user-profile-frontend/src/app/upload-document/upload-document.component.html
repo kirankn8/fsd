@@ -1,68 +1,59 @@
-<div class="card">
+<div class="card light-blue">
   <div class="card-header">
     List of Documents
   </div>
   <div class="card-body">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">No.</th>
-          <th scope="col">File Name</th>
-          <th scope="col">Type</th>
-          <th scope="col">Description</th>
-          <th scope="col">Description</th>
-          <th scope="col">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">File Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Description</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of userDocuments; let i=index">
+            <td>{{i+1}}</td>
+            <td>{{doc.filename}}</td>
+            <td>{{doc.mimetype}}</td>
+            <td>{{doc.description}}</td>
+            <td>
+              <form #f method="get" [action]="domain+doc.documentPath">
+                <button (click)="f.submit()" class="btn btn-success">download</button>
+              </form>
+            </td>
+            <td><button class="btn btn-danger" (click)="onDelete(doc._id)">delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <br>
 <div class="card">
-  <div class="card-header">
+  <div class="card-header light-blue">
     Upload New Document
   </div>
-  <div class="card-body">
+  <div class="card-body light-pink">
     <form>
       <div class="form-group row">
         <label for="staticEmail" class="col-sm-2 col-form-label">Upload a document</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="staticEmail">
+          <input type="file" class="form-control" name="file" ng2FileSelect [uploader]="uploader">
         </div>
       </div>
       <div class="form-group row">
         <label for="staticEmail" class="col-sm-2 col-form-label">Description</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="staticEmail">
+          <input type="text" class="form-control" [(ngModel)]="description" id="description" name="description">
         </div>
       </div>
       <div style="float:right">
-        <button class="btn btn-primary">Upload</button>
+        <button class="btn btn-primary" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length || description?.length===0">Upload</button>
       </div>
     </form>
   </div>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01 - HTML Assignment 1 MEAN</title>
+    <style>
+        legend {
+            color: green;
+        }
+
+        #submit {
+            background-color: green;
+            color: white;
+            margin: auto;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <b>Fields marked (*) are required</b>
+    <form action="/" method="POST">
+        <fieldset>
+            <legend>Input Text Field Validation</legend>
+            <table>
+                <tr>
+                    <td>First Name *</td>
+                    <td>
+                        <input type="text" placeholder="First Name" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name *</td>
+                    <td>
+                        <input type="text" placeholder="Last Name" required>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Email and URL Validation</legend>
+            <table>
+                <tr>
+                    <td>Email *</td>
+                    <td>
+                        <input type="email" placeholder="e.g. swapnil@example.com" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Website *</td>
+                    <td>
+                        <input type="url" placeholder="e.g. http://www.html5andcss3.org" required>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Mobile or Phone Number Validation</legend>
+            <table>
+                <tr>
+                    <td>Mobile *</td>
+                    <td>
+                        <input type="tel" placeholder="Please enter a ten digit phone number" pattern="[0-9]{10}" required>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Drop Down Box Validation</legend>
+            <table>
+                <tr>
+                    <td>Country</td>
+                    <td>
+                        <select name="country" id="country">
+                            <option value="India">India</option>
+                            <option value="USA">USA</option>
+                            <option value="SA">South Africa</option>
+                            <option value="Austraila">Austraila</option>
+                            <option value="NZ">New Zealand</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Number Validation With Specific Range</legend>
+            <table>
+                <tr>
+                    <td>Post Code *</td>
+                    <td>
+                        <input type="number" min="10000" max="99999" required>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Textarea Validation</legend>
+            <table>
+                <tr>
+                    <td>Address *</td>
+                    <td>
+                        <textarea name="address" id="address" cols="30" rows="5" required></textarea>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>CheckBox and Radio Button Validation</legend>
+            <table>
+                <tr>
+                    <td>Agree to T & C *</td>
+                    <td>
+                        <input type="checkbox" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>General *</td>
+                    <td>
+                        <input type="radio" name="gender" id="male" required>
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" id="female" required>
+                        <label for="female">Female</label>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Password Validation Using Pattern</legend>
+            <table>
+                <tr>
+                    <td>Password *</td>
+                    <td>
+                        <input type="password" pattern="[0-9a-fA-F]{6,8}" required>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <button id="submit">Sign Up</button>
+    </form>
+</body>
+
+</html>
