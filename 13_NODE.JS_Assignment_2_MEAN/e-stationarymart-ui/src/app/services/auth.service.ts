@@ -20,7 +20,9 @@ export class AuthService {
   }
 
   checkUser(username, password) {
-    return this.http.post(`http://localhost:3000/api/login/`, { username: username, password: password });
+    return this.http.post(`http://localhost:3000/api/login/`, { username: username, password: password }, {
+      withCredentials: true
+    });
   }
 
   getUsernameCookie() {

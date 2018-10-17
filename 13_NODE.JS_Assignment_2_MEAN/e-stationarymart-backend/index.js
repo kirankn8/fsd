@@ -39,19 +39,23 @@ var sessionStore = new MySQLStore(options);
 
 //  Middlewares
 app.use(session({
-    name: 'some_session',
-    secret: 'lalala',
-    resave: true,
-    saveUninitialized: false,
-    cookie: { maxAge: 365 * 24 * 60 * 60 * 1000, httpOnly: false, domain: '127.0.0.1:9000' },
-    store: sessionStore
+    key: 'e_session_cookie',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(cookieParser('session_cookie_secret'));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(cors());
+app.use(cors({
+    origin: [
+        "http://localhost:4200"
+    ],
+    credentials: true
+}));
 
 // Authentication settings
 passport.serializeUser(function (user, done) {
