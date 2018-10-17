@@ -22,9 +22,7 @@
             <td>{{doc.mimetype}}</td>
             <td>{{doc.description}}</td>
             <td>
-              <form #f method="get" [action]="domain+doc.documentPath">
-                <button (click)="f.submit()" class="btn btn-success">download</button>
-              </form>
+              <button (click)="onDownload(doc.documentPath)" class="btn btn-success">download</button>
             </td>
             <td><button class="btn btn-danger" (click)="onDelete(doc._id)">delete</button></td>
           </tr>

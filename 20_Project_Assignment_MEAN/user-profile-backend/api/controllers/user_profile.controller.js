@@ -11,7 +11,6 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage }).single('file');
-// var upload = multer({ dest: DIR, preservePath: true }).single('file');
 
 exports.list_users = function (req, res) {
     userSchema.find({}, function (err, docs) {

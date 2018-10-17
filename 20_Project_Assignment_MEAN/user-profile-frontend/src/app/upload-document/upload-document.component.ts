@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserServiceService } from '../services/user-service.service';
 import { FileUploader } from 'ng2-file-upload';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-upload-document',
@@ -44,6 +45,12 @@ export class UploadDocumentComponent implements OnInit {
   onDelete(docId) {
     this.userService.deleteUserDocument(this._id, docId).subscribe(data => {
       this.getDocuments();
+    });
+  }
+
+  onDownload(file: string) {
+    this.userService.downloadFile(this.domain + file).subscribe(data => {
+      saveAs(data, file.split('/').pop());
     });
   }
 }

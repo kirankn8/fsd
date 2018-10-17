@@ -23,4 +23,10 @@ export class UserServiceService {
   deleteUserDocument(userId, documentId) {
     return this.http.delete('http://localhost:3000/user/' + userId + '/document/' + documentId);
   }
+
+  downloadFile(file: string) {
+    return this.http.get(file, {
+      responseType: 'blob'
+    });
+  }
 }
