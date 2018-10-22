@@ -31,8 +31,8 @@ exports.cart_items = function (req, res) {
 }
 
 exports.place_order = function (req, res) {
-    console.log('----->', req.session);
-    connection.query(`INSERT INTO PurchaseOrder (total_price, userid) VALUES ('${req.body.totalPrice}', '${req.user.id}')`, function (err, poresult, fields) {
+    console.log('----->', req.user, '\n', req.session, '\n', req.cookies);
+    connection.query(`INSERT INTO PurchaseOrder (total_price, userid) VALUES ('${req.body.totalPrice}', 1)`, function (err, poresult, fields) {
         if (err) throw err;
         var values = [];
         for (var i = 0; i < req.body.cart.length; i++) {

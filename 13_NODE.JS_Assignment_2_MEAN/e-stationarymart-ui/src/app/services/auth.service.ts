@@ -17,6 +17,9 @@ export class AuthService {
 
   logout() {
     this.isLoggedIn = false;
+    this.cookieService.delete('Username');
+    this.cookieService.delete('e_session_cookie');
+    this.cookieService.deleteAll();
   }
 
   checkUser(username, password) {

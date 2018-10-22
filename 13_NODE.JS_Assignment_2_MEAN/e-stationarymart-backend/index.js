@@ -10,6 +10,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser')
 const generate_schema = require('./api/models/schema');
 const LocalStrategy = require('passport-local').Strategy;
+const auth = require('./api/controllers/auth.controller');
 
 const app = express();
 
@@ -41,9 +42,9 @@ var sessionStore = new MySQLStore(options);
 app.use(session({
     key: 'e_session_cookie',
     secret: 'session_cookie_secret',
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: false
+    // store: sessionStore,
+    // resave: false,
+    // saveUninitialized: false
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -59,17 +60,14 @@ app.use(cors({
 
 // Authentication settings
 passport.serializeUser(function (user, done) {
-    console.log(user);
-    done(null, user);
+    done(null, user.id);
 });
 
-passport.deserializeUser(function (user, done) {
-    console.log('>>>>>', user);
-    done(err, user);
-    // User.findById(id, function (err, user) {
-
-    //     done(err, user);
-    // });
+passport.deserializeUser(function (userId, done) {
+    auth.get_user(userId, function (err, user) {
+        console.log(user);
+        done(err, user);
+    });
 });
 
 passport.use(new LocalStrategy(
@@ -77,7 +75,6 @@ passport.use(new LocalStrategy(
         connection.query(`SELECT id, username, password FROM User where username="${username}" LIMIT 1`, function (err, result, fields) {
             if (err)
                 return done(err);
-            console.log(result[0])
             if (result[0] != undefined) {
                 if (result[0].password == password)
                     return done(null, { username: result[0].username, id: result[0].id });
