@@ -19,6 +19,7 @@ export class AuthService {
     this.isLoggedIn = false;
     this.cookieService.delete('Username');
     this.cookieService.delete('e_session_cookie');
+    this.cookieService.delete('Cart');
     this.cookieService.deleteAll();
   }
 

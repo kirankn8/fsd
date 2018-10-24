@@ -18,17 +18,22 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.cartService.currentMessage.subscribe(cartItems => this.cartItems = cartItems);
-    this.getUsername();
+    const checkUsername = setInterval(() => {
+      this.getUsername();
+    }, 1000);
+    if (this.username) {
+      clearInterval(checkUsername);
+    }
   }
 
   toggleCollapsed(): void {
-    console.log(this.collapsed);
     this.collapsed = !this.collapsed;
   }
 
   logout() {
     this.authService.logout();
     this.router.navigate(['/']);
+    this.username = '';
   }
 
   getUsername() {

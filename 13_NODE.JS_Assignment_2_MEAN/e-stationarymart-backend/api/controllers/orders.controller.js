@@ -15,24 +15,24 @@ exports.all_orders = function (req, res) {
     connection.query(`UPDATE PurchaseOrder SET status = 'Approved' WHERE \`status\` IS NULL AND date_time < (NOW() - INTERVAL ${approval_interval} MINUTE)`, function (err, result, fields) {
         if (err) throw err;
     });
-    connection.query("SELECT * FROM PurchaseOrder", function (err, result, fields) {
+    connection.query(`SELECT * FROM PurchaseOrder where userid = ${req.user.id}`, function (err, result, fields) {
         if (err) throw err;
         res.json(result);
     });
 }
 
 exports.cart_items = function (req, res) {
-    connection.query("SELECT Product.id, Product.name, Product.price, Cart.qty FROM Product \
-                      JOIN Cart on Product.id = Cart.productid and Cart.orderid = "+ req.params.orderid
+    connection.query(`SELECT Product.id, Product.name, Product.price, Cart.qty FROM Product \
+                      JOIN Cart on Product.id = Cart.productid and Cart.orderid = ${req.params.orderid}`
         , function (err, result, fields) {
             if (err) throw err;
             res.json(result);
-        });
+        }
+    );
 }
 
 exports.place_order = function (req, res) {
-    console.log('----->', req.user, '\n', req.session, '\n', req.cookies);
-    connection.query(`INSERT INTO PurchaseOrder (total_price, userid) VALUES ('${req.body.totalPrice}', 1)`, function (err, poresult, fields) {
+    connection.query(`INSERT INTO PurchaseOrder (total_price, userid) VALUES ('${req.body.totalPrice}', ${req.user.id})`, function (err, poresult, fields) {
         if (err) throw err;
         var values = [];
         for (var i = 0; i < req.body.cart.length; i++) {

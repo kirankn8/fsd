@@ -6,7 +6,11 @@ const product = require('./controllers/products.controller');
 const order = require('./controllers/orders.controller');
 const auth = require('./controllers/auth.controller');
 
-router.get('/', (req, res) => res.send('The app is up and running!'));
+
+
+router.get('/', (req, res) => {
+    res.send('The app is up and running!');
+});
 
 router.get('/api/products', product.all_products);
 

@@ -14,11 +14,11 @@ exports.login = function (req, res) {
 
 exports.get_user = function (id, cb) {
     connection.query(`SELECT id, username FROM User where id="${id}" LIMIT 1`, function (err, result, fields) {
-        if (err) cb(err, { username: false, id: null });
+        if (err) cb(err, { username: false, id: -1 });
         else if (result[0] != undefined) {
             cb(null, { username: result[0].username, id: result[0].id });
         } else {
-            cb('User not found', { username: false, id: null });
+            cb('User not found', { username: false, id: -1 });
         }
     });
 }

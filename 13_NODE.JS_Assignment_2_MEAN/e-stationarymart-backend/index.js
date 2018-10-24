@@ -42,9 +42,9 @@ var sessionStore = new MySQLStore(options);
 app.use(session({
     key: 'e_session_cookie',
     secret: 'session_cookie_secret',
-    // store: sessionStore,
-    // resave: false,
-    // saveUninitialized: false
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -60,12 +60,15 @@ app.use(cors({
 
 // Authentication settings
 passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    if (user.id != null)
+        done(null, user.id);
+    else {
+        done(null, -1);
+    }
 });
 
 passport.deserializeUser(function (userId, done) {
     auth.get_user(userId, function (err, user) {
-        console.log(user);
         done(err, user);
     });
 });
@@ -79,7 +82,7 @@ passport.use(new LocalStrategy(
                 if (result[0].password == password)
                     return done(null, { username: result[0].username, id: result[0].id });
             }
-            return done(null, { username: false, id: null });
+            return done(null, { username: false, id: -1 });
         });
     }
 ));

@@ -17,11 +17,15 @@ export class OrderService {
     for (const keys of Object.keys(this.cartService.cart)) {
       order.cart.push({ id: this.cartService.cart[keys].item.id, qty: this.cartService.cart[keys].qty });
     }
-    return this.http.post(`http://localhost:3000/api/order/`, order);
+    return this.http.post(`http://localhost:3000/api/order/`, order, {
+      withCredentials: true
+    });
   }
 
   orderHistory() {
-    return this.http.get('http://localhost:3000/api/orders/');
+    return this.http.get('http://localhost:3000/api/orders/', {
+      withCredentials: true
+    });
   }
 
   orderCart(id) {
@@ -29,6 +33,8 @@ export class OrderService {
   }
 
   cancelOrder(id) {
-    return this.http.post(`http://localhost:3000/api/order/cancel/`, { orderid: id });
+    return this.http.post(`http://localhost:3000/api/order/cancel/`, { orderid: id }, {
+      withCredentials: true
+    });
   }
 }
