@@ -43,6 +43,21 @@ export class CartService {
     this.messageSource.next(this.cartItemsLength);
   }
 
+  loadToCart(data) {
+    for (const prod of data) {
+      this.addToCart({
+        item: {
+          description: prod.description,
+          id: prod.id,
+          image: prod.image,
+          name: prod.name,
+          price: prod.price,
+        },
+        qty: prod.qty,
+      });
+    }
+  }
+
   removeFromCart(id) {
     const temp = this.cart;
     temp[id].qty -= 1;

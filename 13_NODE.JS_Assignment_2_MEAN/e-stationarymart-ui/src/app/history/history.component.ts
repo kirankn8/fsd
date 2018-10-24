@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-history',
@@ -12,7 +13,7 @@ export class HistoryComponent implements OnInit {
 
   orderCart = {};
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private cartService: CartService) { }
 
   ngOnInit() {
     this.getHistory();
@@ -42,6 +43,13 @@ export class HistoryComponent implements OnInit {
 
   cancelOrder(id) {
     this.orderService.cancelOrder(id).subscribe(data => {
+      this.getHistory();
+    });
+  }
+
+  modifyOrder(id) {
+    this.orderService.modifyOrder(id).subscribe(data => {
+      this.cartService.loadToCart(data);
       this.getHistory();
     });
   }

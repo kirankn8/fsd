@@ -22,6 +22,10 @@ export class OrderService {
     });
   }
 
+  modifyOrder(id) {
+    return this.http.get('http://localhost:3000/api/order/' + id + '/modify/');
+  }
+
   orderHistory() {
     return this.http.get('http://localhost:3000/api/orders/', {
       withCredentials: true

@@ -20,6 +20,8 @@ router.get('/api/orders/', order.all_orders);
 
 router.get('/api/order/:orderid', order.cart_items);
 
+router.get('/api/order/:orderid/modify/', order.modify_items);
+
 router.post('/api/order/', order.place_order);
 
 router.post('/api/order/cancel/', order.cancel_order);

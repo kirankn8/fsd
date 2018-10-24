@@ -26,6 +26,8 @@
       <button *ngIf="order.status==='Cancelled'" class="btn btn-sm btn-warning">Cancelled</button>
       &nbsp;
       <button class="btn btn-sm btn-danger" [disabled]="order.status!==null" (click)="cancelOrder(order.id)">Cancel</button>
+      &nbsp;
+      <button class="btn btn-sm btn-default" [disabled]="order.status!==null" (click)="modifyOrder(order.id)">Modify</button>
     </div>
   </li>
 </ol>

@@ -31,6 +31,22 @@ exports.cart_items = function (req, res) {
     );
 }
 
+
+exports.modify_items = function (req, res) {
+    connection.query(`SELECT Product.id, Product.name, Product.description, Product.image, Product.price, Cart.qty FROM Product \
+                      JOIN Cart on Product.id = Cart.productid and Cart.orderid = ${req.params.orderid}`
+        , function (err, result, fields) {
+            if (err) throw err;
+            connection.query(`DELETE from Cart where orderid = ${req.params.orderid}`,
+                function (err, data, fields) { if (err) throw err; });
+            connection.query(`DELETE from PurchaseOrder where id = ${req.params.orderid}`,
+                function (err, data, fields) { if (err) throw err; });
+            res.json(result);
+        }
+    );
+}
+
+
 exports.place_order = function (req, res) {
     connection.query(`INSERT INTO PurchaseOrder (total_price, userid) VALUES ('${req.body.totalPrice}', ${req.user.id})`, function (err, poresult, fields) {
         if (err) throw err;
