@@ -28,8 +28,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
-                bat 'cd ./13_NODE.JS_Assignment_2_MEAN/e-stationarymart-backend/ && pm2 start index.js'
+                echo 'Deploying the application'
             }
         }
     }
