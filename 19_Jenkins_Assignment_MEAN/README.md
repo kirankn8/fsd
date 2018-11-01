@@ -4,7 +4,7 @@
 
 2. Share the screen shots of the successful build of the job.
     ```
-    Screenshots are along along with this file in the same directory.
+    Screenshots are along with this file in the same directory.
     ```
     
 3. Also share your jenkin admin credentials to verify the same.
