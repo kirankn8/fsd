@@ -94,3 +94,5 @@ app.use('/', routes);
 app.listen(config.serverport, () => {
     console.log('E-Stationary Mart Backend is listening on port: ' + config.serverport)
 });
+
+module.exports = app;

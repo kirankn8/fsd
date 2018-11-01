@@ -17,17 +17,19 @@ pipeline {
         stage('Testing Frontend') {
             steps {
                 echo 'Testing Frontend...'
-                at 'cd ./13_NODE.JS_Assignment_2_MEAN/e-stationarymart-ui/ && npm test'
+                bat 'cd ./13_NODE.JS_Assignment_2_MEAN/e-stationarymart-ui/ && npm test'
             }
         }
         stage('Testing Backend') {
             steps {
                 echo 'Testing Backend...'
+                bat 'cd ./13_NODE.JS_Assignment_2_MEAN/e-stationarymart-backend/ && npm test'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                bat 'cd ./13_NODE.JS_Assignment_2_MEAN/e-stationarymart-backend/ && pm2 start index.js'
             }
         }
     }

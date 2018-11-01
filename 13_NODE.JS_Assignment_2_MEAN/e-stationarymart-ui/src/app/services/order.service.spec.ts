@@ -1,11 +1,17 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { OrderService } from './order.service';
+import { CartService } from './cart.service';
+import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 describe('OrderService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [OrderService]
+      providers: [OrderService, CartService, CookieService],
+      imports: [
+        HttpClientModule,
+      ]
     });
   });
 
