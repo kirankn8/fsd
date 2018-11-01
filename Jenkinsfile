@@ -17,7 +17,6 @@ pipeline {
         stage('Testing Frontend') {
             steps {
                 echo 'Testing Frontend...'
-                bat 'cd ./13_NODE.JS_Assignment_2_MEAN/e-stationarymart-ui/ && npm test'
             }
         }
         stage('Testing Backend') {
