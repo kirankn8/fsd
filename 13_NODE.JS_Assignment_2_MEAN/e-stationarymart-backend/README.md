@@ -1,6 +1,6 @@
 # E-Stationary Mart Backend
 
-To run the Backend create a file conig.js with following contents:
+To run the Backend create a file config.js with following contents:
 ```
 const config = {
     host: "localhost",
